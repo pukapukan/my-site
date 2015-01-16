@@ -1,0 +1,69 @@
+@import "../styles/utilities";
+@import "../styles/variables";
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+core-scroll-header-panel {
+  height: 100%;
+}
+
+core-toolbar#mainheader{
+  color: white;
+  fill: white;
+  background-color: transparent;
+}
+
+core-scroll-header-panel::shadow #headerBg {
+  background-image: url(/images/nz_national_park.jpg);
+  @include prefix(filter, grayscale(80%) contrast(120%));
+}
+
+core-scroll-header-panel::shadow #condensedHeaderBg {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+core-scroll-header-panel::shadow #mainContainer {
+  padding: 0px 68px;
+}
+
+.content {
+  margin: 100px;
+}
+
+.title {
+  font-size: 3rem;
+  transform-origin: left;
+  -ms-transform-origin: left;
+  -moz-transform-origin: left;
+  -webkit-transform-origin: left;
+  will-change: transform;
+}
+
+.title span {
+  font-weight: bolder;
+  font-family: fantasy;
+  color: rgb(244, 219, 51);
+}
+
+a {
+  color: white;
+}
+
+a:after {
+  content: '';
+  display: block;
+  width: 100%;
+  border: 1px solid white;
+  transform: translate(0px, 6px);
+  opacity: 0;
+  color: #999;
+  transition: transform .2s ease-out, opacity .2s ease-out;
+}
+
+a:hover:after {
+  transform: translate(0px, 0px);
+  opacity: 1;
+}

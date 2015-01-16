@@ -1,0 +1,106 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/core-scroll-header-panel/core-scroll-header-panel.html">
+<link rel="import" href="../../bower_components/core-toolbar/core-toolbar.html">
+<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
+<link rel="import" href="my-font-awesome.html">
+<link rel="import" href="my-popup-card.html">
+<link rel="import" href="my-timeline.html">
+
+<polymer-element name="my-app" attributes="">
+  <template>
+    <link href="/elements/my-app.css" rel="stylesheet">
+
+    <core-scroll-header-panel id="headerPanel" condenses="true" keepCondensedHeader="true" on-core-header-transform="{{onHeaderTransform}}">
+      <core-toolbar id="mainheader" class="tall layout">
+        <div class="top"></div>
+        <div flex></div>
+        <a href="//github.com/pukapukan"><my-font-awesome attr="fa-github"></my-font-awesome></a>
+        <a href="//twitter.com/hyunjo_on"><my-font-awesome attr="fa-twitter"></my-font-awesome></a>
+        <a href="//www.linkedin.com/in/jasonhyunjoonpark"><my-font-awesome attr="fa-linkedin"></my-font-awesome></a>
+
+        <div class="indent"></div>
+        <div class="middle indent">few things about</div>
+        <h1 id="title" class="bottom title indent">hyunj<span>o_O</span>n</h1>
+      </core-toolbar>
+
+      <section class="career">
+        <h2>Career journey</h2>
+        <my-timeline></my-timeline>
+      </section>
+
+      <section class="open-source">
+        <h3>Open source projects</h3>
+        <!-- reference - chips to cards  -->
+        <!-- source: https://github.com/Polymer/core-animated-pages/blob/master/demos/music.html -->
+        <!-- demo: https://www.polymer-project.org/components/core-animated-pages/demos/music.html -->
+        <my-popup-card></my-popup-card>
+        <ul>
+          <li>Thomsons Online Benefits</li>
+          <li>Avanade</li>
+          <li>Asiarooms.com</li>
+        </ul>
+      </section>
+
+      <div class="projects">
+        <h3>Projects</h3>
+        <ul>
+          <li>FBench IDE for IEC61499 Function Block</li>
+          <li>Crawler</li>
+        </ul>
+      </div>
+
+      <div class="presentations">
+        <h3>Presentations</h3>
+        <ul>
+          <li>Introduction to Node.js</li>
+          <li>Web Components using Polymer</li>
+        </ul>
+      </div>
+
+      <div class="content">
+        Hello world
+      </div>
+      <div class="content">
+        Hello world
+      </div>
+      <div class="content">
+        Hello world
+      </div>
+      <div class="content">
+        Hello world
+      </div>
+      <div class="content">
+        Hello world
+      </div>
+      <div class="content">
+        Hello world
+      </div>
+      <div class="content">
+        Hello world
+      </div>
+      <div class="content">
+        Hello world
+      </div>
+      <div class="content">
+        Hello world
+      </div>
+    </core-scroll-header-panel>
+  </template>
+  <script>
+  (function () {
+
+    var titleStyle;
+    Polymer({
+      ready:function() {
+        titleStyle = this.$.title.style;
+      },
+      onHeaderTransform: function (event, detail, sender) {
+        var m = detail.height - detail.condensedHeight;
+        var scale = Math.max(0.5, (m - detail.y) / (m / 0.5)  + 0.5);
+        titleStyle.transform = titleStyle.webkitTransform = 'scale(' + scale + ')';
+      }
+    });
+
+  })();
+  </script>
+</polymer-element>

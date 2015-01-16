@@ -1,0 +1,28 @@
+// Mixins and Placeholders
+%clearfix {
+  &:after, &:before {
+    content: '';
+    display: block;
+    width: 100%;
+    clear: both;
+  }
+}
+
+@mixin prefix($prop, $val) {
+  @each $prefix in '-webkit-', '-moz-', '-ms-', '' {
+    #{$prefix}#{$prop}: $val;
+  }
+}
+
+@mixin filter($properties) {
+  // Your vendor prefixing stuff here, I am using Bourbon:
+  @include prefix(filter, $properties);
+}
+
+@function grayscale($value) {
+  @return #{ "grayscale(" + $value + ")" };
+}
+
+@function contrast($value) {
+  @return #{ "contrast(" + $value + ")" };
+}

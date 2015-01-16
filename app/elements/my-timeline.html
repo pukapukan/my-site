@@ -1,0 +1,56 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<polymer-element name="my-timeline">
+  <template>
+    <link href="/elements/my-timeline.css" rel="stylesheet">
+    <section id="timeline">
+      <template repeat="{{item, index in items}}">
+        <div class="timeline-item">
+          <div class="timeline-icon">
+            <img src="/images/icon/{{item.icon}}.svg" />
+          </div>
+          <div class="timeline-content" right?="{{index | isOdd}}">
+            <!-- <h2>{{item.title}}</h2> -->
+            <div class="timeline-content-title">
+              <img src="/images/{{item.company}}.png" alt="{{item.company}}" />
+            </div>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Atque, facilis quo maiores magnam modi ab libero praesentium blanditiis.
+            </p>
+            <a href="#" class="btn">more</a>
+          </div>
+        </div>
+      </template>
+    </section>
+  </template>
+  <script>
+  Polymer({
+    // data
+    items: [
+      {
+        company: 'asiarooms',
+        content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.\nAtque, facilis quo maiores magnam modi ab libero praesentium blanditiis.',
+        tech: [],
+        icon: 'lightbulb'
+      },
+      {
+        company: 'avanade',
+        content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.\nAtque, facilis quo maiores magnam modi ab libero praesentium blanditiis.',
+        tech: [],
+        icon: 'book'
+      },
+      {
+        company: 'thomsons',
+        content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.\nAtque, facilis quo maiores magnam modi ab libero praesentium blanditiis.',
+        tech: [],
+        icon: 'book'
+      }
+    ],
+    // expression
+    isOdd: function(num) {
+      return num % 2 === 1;
+    }
+  });
+  </script>
+</polymer-element>
