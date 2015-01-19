@@ -18,7 +18,7 @@ core-toolbar#mainheader{
 
 core-scroll-header-panel::shadow #headerBg {
   background-image: url(/images/nz_national_park.jpg);
-  @include prefix(filter, grayscale(80%) contrast(120%));
+  @include prefix(filter, blur(2px));
 }
 
 core-scroll-header-panel::shadow #condensedHeaderBg {
@@ -27,6 +27,58 @@ core-scroll-header-panel::shadow #condensedHeaderBg {
 
 core-scroll-header-panel::shadow #mainContainer {
   padding: 0px 68px;
+  padding-top: 0px !important;
+}
+
+section[page] {
+  min-height: 100vh;
+}
+
+.space {
+  height: 250px;
+}
+
+.profile {
+  @extend %center;
+
+  height: 300px;
+  width: 300px;
+  // margin-top: 275px;
+  margin-bottom: 50px;
+  border-radius: 150px;
+  background-image: url('/images/me/profile.jpg');
+  background-size: cover;
+  background-position-x: -83px;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+  @include prefix(transform, translateY(-30px));;
+  @include prefix(filter, blur(5px));
+  @include prefix(transition-property, "transform, filter");
+  @include prefix(transition-duration, 1s);
+  @include prefix(transition-timing-function, ease-out);
+
+  &.slide-down {
+    opacity: 1;
+    @include prefix(transform, translateY(0px));;
+    @include prefix(filter, blur(0px));
+  }
+
+  .border {
+    position:relative;
+    left:5px;
+    top:5px;
+    width:284px;
+    height:284px;
+    border:4px dashed white;
+    border-radius:150px;
+  }
+}
+
+.myself {
+  @extend %center;
+  font-family: $description-font;
+  font-size: 1.5rem;
+  max-width: 400px;
 }
 
 .content {
@@ -66,4 +118,29 @@ a:after {
 a:hover:after {
   transform: translate(0px, 0px);
   opacity: 1;
+}
+
+@media screen and (max-width: $small) {
+  core-toolbar .indent {
+    margin-left: 4px !important;
+  }
+
+  .profile {
+    // margin-top: 225px;
+    margin-bottom: 30px;
+  }
+
+  .about {
+    margin-bottom: 100px;
+  }
+
+  .myself {
+    position: relative;
+    left: initial;
+    margin-left: initial;
+  }
+
+  core-scroll-header-panel::shadow #mainContainer {
+    padding: 0px 12px;
+  }
 }

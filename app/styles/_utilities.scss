@@ -19,10 +19,26 @@
   @include prefix(filter, $properties);
 }
 
+%center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// css3 filters
 @function grayscale($value) {
   @return #{ "grayscale(" + $value + ")" };
 }
 
 @function contrast($value) {
   @return #{ "contrast(" + $value + ")" };
+}
+
+@function blur($value) {
+  @return #{ "blur(" + $value + ")" };
+}
+
+// workaround for /deep/
+@function deep($before, $after) {
+  @return #{ $before + " /deep / " + $after };
 }

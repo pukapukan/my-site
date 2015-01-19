@@ -23,6 +23,16 @@
         <h1 id="title" class="bottom title indent">hyunj<span>o_O</span>n</h1>
       </core-toolbar>
 
+      <section class="about" page>
+        <div class="space"></div>
+        <div id="profilePic" class="profile">
+          <div class="border"></div>
+        </div>
+        <div class="myself" auto-vertical>
+          Hi, my name is Jason (a.k.a. Hyunjoon) and I'm a .NET/JS geek. I value software craftmanship and believe in harmony and synergy that comes from a good team and seasoned leader.
+        </div>
+      </section>
+
       <section class="career">
         <h2>Career journey</h2>
         <my-timeline></my-timeline>
@@ -88,16 +98,19 @@
   </template>
   <script>
   (function () {
-
     var titleStyle;
     Polymer({
       ready:function() {
         titleStyle = this.$.title.style;
+        var profilePic = this.$.profilePic;
+        setTimeout(function() {
+          profilePic.classList.add('slide-down');
+        }, 150);
       },
       onHeaderTransform: function (event, detail, sender) {
         var m = detail.height - detail.condensedHeight;
         var scale = Math.max(0.5, (m - detail.y) / (m / 0.5)  + 0.5);
-        titleStyle.transform = titleStyle.webkitTransform = 'scale(' + scale + ')';
+        titleStyle.transform = titleStyle.webkitTransform = titleStyle.mozTransform = titleStyle.msTransform = 'scale(' + scale + ')';
       }
     });
 

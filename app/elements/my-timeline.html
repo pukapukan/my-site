@@ -6,19 +6,39 @@
     <section id="timeline">
       <template repeat="{{item, index in items}}">
         <div class="timeline-item">
+          <div class="timeline-linker">
+          </div>
           <div class="timeline-icon">
             <img src="/images/icon/{{item.icon}}.svg" />
           </div>
           <div class="timeline-content" right?="{{index | isOdd}}">
             <!-- <h2>{{item.title}}</h2> -->
-            <div class="timeline-content-title">
+
+            <div class="title">
               <img src="/images/{{item.company}}.png" alt="{{item.company}}" />
             </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Atque, facilis quo maiores magnam modi ab libero praesentium blanditiis.
+            <div class="role">
+              {{item.role}}
+            </div>
+
+            <div class="period">
+
+            </div>
+
+            <p class="description">
+              {{item.content}}
             </p>
-            <a href="#" class="btn">more</a>
+
+            <div class="stacks">
+              Stacks:
+              <ul>
+                <template repeat="{{stack in item.stacks}}">
+                  <li>{{stack}}</li>
+                </template>
+              </ul>
+            </div>
+
+            <!-- <a href="#" class="btn">more</a> -->
           </div>
         </div>
       </template>
@@ -30,20 +50,29 @@
     items: [
       {
         company: 'asiarooms',
-        content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.\nAtque, facilis quo maiores magnam modi ab libero praesentium blanditiis.',
-        tech: [],
+        from: '2014',
+        to: 'present',
+        role: 'Fullstack software engineer',
+        content: 'Built a web application supporting multi-brand and multi-language for The LateRooms Group',
+        stacks: ['node.js', 'kraken.js', 'rabbit MQ'],
         icon: 'lightbulb'
       },
       {
         company: 'avanade',
+        from: '2012',
+        to: '2014',
+        role: 'IT consultant',
         content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.\nAtque, facilis quo maiores magnam modi ab libero praesentium blanditiis.',
-        tech: [],
+        stacks: ['.NET', 'd3.js', 'Kendo UI', 'MSSQL'],
         icon: 'book'
       },
       {
         company: 'thomsons',
+        from: '2010',
+        to: '2012',
+        role: '.NET developer',
         content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.\nAtque, facilis quo maiores magnam modi ab libero praesentium blanditiis.',
-        tech: [],
+        stacks: ['.NET', 'Unity framework', 'MSSQL'],
         icon: 'book'
       }
     ],

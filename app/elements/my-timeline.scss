@@ -88,6 +88,7 @@ header {
   }
 
   .timeline-item {
+    padding-top: 30px;
     margin-bottom: 50px;
     position: relative;
     @extend %clearfix;
@@ -117,9 +118,10 @@ header {
       background: #fff;
       padding: 20px;
       border: 4px solid;
-      @include prefix(box-shadow, 8px 8px 2px rgba(0,0,0,0.1));
+      @include prefix(box-shadow, 8px 8px 1px rgba(0,0,0,0.1));
       @include prefix(border-radius, 5px);
       @include prefix(transition, all .3s ease);
+      will-change: transform, box-shadow;
 
       h2 {
         padding: 15px;
@@ -130,33 +132,47 @@ header {
         @include prefix(border-radius, 3px 3px 0 0);
       }
 
-      &:before {
-        content: '';
-        position: absolute;
-        left: 45%;
-        top: 20px;
-        width: 0;
-        height: 0;
-        border-top: 7px solid transparent;
-        border-bottom: 7px solid transparent;
-        border-left:7px solid $timeline-color;
-      }
+      // &:before {
+      //   content: '';
+      //   position: absolute;
+      //   left: 45%;
+      //   top: 20px;
+      //   width: 0;
+      //   height: 0;
+      //   border-top: 7px solid transparent;
+      //   border-bottom: 7px solid transparent;
+      //   border-left:7px solid $timeline-color;
+      // }
 
       &[right] {
         float: right;
 
-        &:before {
-          content: '';
-          right: 45%;
-          left: inherit;
-          border-left: 0;
-          border-right: 7px solid $timeline-color;
-        }
+        // &:before {
+        //   content: '';
+        //   right: 45%;
+        //   left: inherit;
+        //   border-left: 0;
+        //   border-right: 7px solid $timeline-color;
+        // }
+      }
+
+      &:hover {
+        @include prefix(transform, translate(-4px, -4px));
+        @include prefix(box-shadow, 12px 12px 2px rgba(0,0,0,0.1));
       }
     }
 
     .timeline-content-title > img {
       height: 50px;
+    }
+
+    .timeline-linker {
+      position: absolute;
+      top: 10%;
+      left: 44%;
+      width: 5%;
+      border-top: 5px solid $timeline-color;
+      z-index: -1;
     }
   }
 }
@@ -184,7 +200,7 @@ header {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $small) {
   #timeline {
     margin: 30px;
     padding: 0;
@@ -197,7 +213,7 @@ header {
         width: 90%;
         float: right;
 
-        &:before, &.right:before {
+        &:before, &[right]:before {
           left: 10%;
           margin-left: -6px;
           border-left: 0;

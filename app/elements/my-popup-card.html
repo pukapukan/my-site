@@ -118,10 +118,29 @@
   Polymer('my-popup-card', {
     page: 0,
     items: [
-      { subHeader: 'node, heroku', mainHeader: 'Crawl2Tweet', color: 'gray' },
-      { subHeader: 'node, passport', mainHeader: 'passport-nate', color: 'black' },
-      { subHeader: 'Java, Function Block', mainHeader: 'FBench IDE', color: 'gray' },
-      { subHeader: 'South Koera', mainHeader: 'Seoul', color: 'black' }
+      {
+        mainHeader: 'Crawl2Tweet',
+        link: 'https://github.com/pukapukan/Crawl2Tweet',
+        subHeader: 'node, heroku',
+        color: 'gray',
+      },
+      {
+        mainHeader: 'passport-nate',
+        link: 'https://github.com/pukapukan/passport-nate',
+        subHeader: 'node, passport',
+        color: 'black'
+      },
+      {
+        mainHeader: 'FBench IDE',
+        link: 'http://homepages.engineering.auckland.ac.nz/~vyatkin/fbench/index.html',
+        subHeader: 'Java, Function Block',
+        color: 'gray'
+      },
+      {
+        mainHeader: 'Seoul',
+        subHeader: 'South Koera',
+        color: 'black'
+      }
     ],
     selectedChip: null,
     transition: function(e) {
