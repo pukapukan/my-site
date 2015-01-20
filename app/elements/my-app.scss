@@ -94,10 +94,11 @@ section[page] {
   will-change: transform;
 }
 
-.title span {
+.title > span {
   font-weight: bolder;
   font-family: fantasy;
   color: rgb(244, 219, 51);
+  transition: all 0.3s ease-out;
 }
 
 a {

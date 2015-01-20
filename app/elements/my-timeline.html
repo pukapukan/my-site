@@ -1,43 +1,61 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="my-font-awesome.html">
 
 <polymer-element name="my-timeline">
   <template>
     <link href="/elements/my-timeline.css" rel="stylesheet">
     <section id="timeline">
       <template repeat="{{item, index in items}}">
-        <div class="timeline-item">
+        <div class="timeline-item" right?="{{index | isOdd}}">
           <div class="timeline-linker">
           </div>
           <div class="timeline-icon">
-            <img src="/images/icon/{{item.icon}}.svg" />
+            <img src="/images/icon/star.svg" />
+            {{item.to}}
           </div>
-          <div class="timeline-content" right?="{{index | isOdd}}">
+          <div class="timeline-content">
             <!-- <h2>{{item.title}}</h2> -->
+
+            <div class="period">
+              {{item.from}} ~ {{item.to}}
+            </div>
 
             <div class="title">
               <img src="/images/{{item.company}}.png" alt="{{item.company}}" />
             </div>
+
             <div class="role">
               {{item.role}}
             </div>
 
-            <div class="period">
+            <template if="{{item.duties}}">
+              <p class="description">
+                {{item.duties}}
+              </p>
+              <div class="stacks">
+                <ul>
+                  <template repeat="{{stack in item.stacks}}">
+                    <li>{{stack}}</li>
+                  </template>
+                </ul>
+              </div>
+            </template>
 
-            </div>
-
-            <p class="description">
-              {{item.content}}
-            </p>
-
-            <div class="stacks">
-              Stacks:
-              <ul>
-                <template repeat="{{stack in item.stacks}}">
-                  <li>{{stack}}</li>
-                </template>
-              </ul>
-            </div>
-
+            <template if="{{item.projects}}">
+              <template repeat="{{project in item.projects}}">
+                <h4>{{project.client}}</h4>
+                <p class="description">
+                  {{project.duties}}
+                </p>
+                <div class="stacks">
+                  <ul>
+                    <template repeat="{{stack in project.stacks}}">
+                      <li>{{stack}}</li>
+                    </template>
+                  </ul>
+                </div>
+              </template>
+            </template>
             <!-- <a href="#" class="btn">more</a> -->
           </div>
         </div>
@@ -53,32 +71,47 @@
         from: '2014',
         to: 'present',
         role: 'Fullstack software engineer',
-        content: 'Built a web application supporting multi-brand and multi-language for The LateRooms Group',
-        stacks: ['node.js', 'kraken.js', 'rabbit MQ'],
-        icon: 'lightbulb'
+        duties: 'Built a web application supporting multi-brand/multi-language for The LateRooms Group',
+        sites: [{ name: 'laterooms.com', url: 'myaccount.laterooms.com'}, { name: 'asiarooms.com', url: 'myaccount.asiarooms.com' }],
+        stacks: ['node', 'express', 'kraken', 'rabbit MQ', 'git'],
       },
       {
         company: 'avanade',
         from: '2012',
         to: '2014',
         role: 'IT consultant',
-        content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.\nAtque, facilis quo maiores magnam modi ab libero praesentium blanditiis.',
-        stacks: ['.NET', 'd3.js', 'Kendo UI', 'MSSQL'],
-        icon: 'book'
+        projects: [{
+          client: 'Inland Revenue Authority of Singapore',
+          duties: 'Team lead and solution designer to develop online tax filing system for corporates',
+          stacks: ['asp.net', 'jQuery', 'html5', 'tfs']
+        }, {
+          client: 'Singapore Pools',
+          duties: 'Design and develop \'Sweep Management System\' and \'Sweep Validation System\' written in Oracle into a centralised enterprise web application.',
+          stacks: ['asp.net mvc', 'jQuery', 'kendo UI', 'tfs', 'mssql']
+        }, {
+          client: 'Inland Revenue Authority of Singapore',
+          duties: 'Enhanced IRAS system to realize integration with InfoComm Development of Singapore (IDA)\'s web-portal service, OneInBoX.  This allows letters sent to taxpayers are subscribed via OneInBox and email.',
+          stacks: ['.net', 'ibm WebSphere', 'db2', 'mssql']
+        }],
       },
       {
         company: 'thomsons',
         from: '2010',
         to: '2012',
-        role: '.NET developer',
-        content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.\nAtque, facilis quo maiores magnam modi ab libero praesentium blanditiis.',
-        stacks: ['.NET', 'Unity framework', 'MSSQL'],
-        icon: 'book'
+        role: 'Fullstack software engineer',
+        duties: 'Responsible for designing and delivering numerous new features to global scale web application, namely converting WebForm based application to HTML5 based application using KnockOut JS and converting existing .NET based application to Service Oriented Architecture with aid of Unity framework',
+        stacks: ['.net', 'unity framework', 'knockout.js', 'mssql']
       }
     ],
     // expression
     isOdd: function(num) {
       return num % 2 === 1;
+    },
+    isArray: function(data) {
+      return Array.isArray(data);
+    },
+    isString: function(data) {
+      return typeof(data) === 'string';
     }
   });
   </script>
