@@ -14,6 +14,11 @@ core-toolbar#mainheader{
   color: white;
   fill: white;
   background-color: transparent;
+
+  a {
+    display: inline-block;
+    margin: 0 4px;
+  }
 }
 
 core-scroll-header-panel::shadow #headerBg {
@@ -35,6 +40,7 @@ section[page] {
 
 .space {
   height: 250px;
+  height: calc(55vh - 200px);
 }
 
 .profile {
@@ -52,14 +58,8 @@ section[page] {
   @include prefix(transform, translateY(-30px));;
   @include prefix(filter, blur(5px));
   @include prefix(transition-property, "transform, filter");
-  @include prefix(transition-duration, 1s);
+  @include prefix(transition-duration, 1.5s);
   @include prefix(transition-timing-function, ease-out);
-
-  &.slide-down {
-    opacity: 1;
-    @include prefix(transform, translateY(0px));;
-    @include prefix(filter, blur(0px));
-  }
 
   .border {
     position:relative;
@@ -69,6 +69,12 @@ section[page] {
     height:284px;
     border:4px dashed white;
     border-radius:150px;
+  }
+
+  &.show {
+    opacity: 1;
+    @include prefix(transform, translateY(0px));;
+    @include prefix(filter, blur(0px));
   }
 }
 

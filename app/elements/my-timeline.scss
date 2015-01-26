@@ -80,6 +80,9 @@ my-font-awesome {
       font-weight: 300;
       @include prefix(border-radius, 3px 3px 0 0);
     }
+    .company-logo {
+      color: transparent;
+    }
     .role {
       color: lighten(black, 20%);
       font-size: 1.5rem;

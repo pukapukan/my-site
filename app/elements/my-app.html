@@ -10,14 +10,16 @@
   <template>
     <link href="/elements/my-app.css" rel="stylesheet">
 
-    <core-scroll-header-panel id="headerPanel" condenses="true" keepCondensedHeader="true" on-core-header-transform="{{onHeaderTransform}}">
+    <core-scroll-header-panel id="headerPanel" condenses="true" keepCondensedHeader="true" on-core-header-transform="{{onHeaderTransform}}" on-scroll={{onScroll}}>
       <core-toolbar id="mainheader" class="tall layout">
-        <div class="top"></div>
         <div flex></div>
-        <!-- <a href="//twitter.com/hyunjo_on"><my-font-awesome attr="fa-twitter"></my-font-awesome></a> -->
-        <a href="//medium.com/@grunty"><my-font-awesome attr="fa-medium"></my-font-awesome></a>
-        <a href="//github.com/pukapukan"><my-font-awesome attr="fa-github"></my-font-awesome></a>
-        <a href="//www.linkedin.com/in/jasonhyunjoonpark"><my-font-awesome attr="fa-linkedin"></my-font-awesome></a>
+        <div class="top">
+          <!-- <a href="//twitter.com/hyunjo_on"><my-font-awesome attr="fa-twitter"></my-font-awesome></a> -->
+          <a href="//medium.com/@grunty"><my-font-awesome attr="fa-medium"></my-font-awesome></a>
+          <a href="//github.com/pukapukan"><my-font-awesome attr="fa-github"></my-font-awesome></a>
+          <a href="//www.linkedin.com/in/jasonhyunjoonpark"><my-font-awesome attr="fa-linkedin"></my-font-awesome></a>
+        </div>
+
 
         <div class="indent"></div>
         <div class="middle indent">few things about</div>
@@ -26,11 +28,11 @@
 
       <section class="about" page>
         <div class="space"></div>
-        <div id="profilePic" class="profile">
+        <div id="profile" class="profile">
           <div class="border"></div>
         </div>
         <div class="myself" auto-vertical>
-          Hi, my name is Jason (a.k.a. Hyunjoon) and I'm a .NET/JS geek. I value software craftmanship and believe in harmony and synergy that comes from a great team, an awesome culture and a seasoned leader.
+          Hi, my name is Jason (a.k.a. Hyunjoon) and I'm a Korea-born Kiwi + .NET/JS geek.  As a software engineer, I value software craftmanship and believe in harmony and synergy that comes from a great team, an awesome culture and a seasoned leader.
         </div>
       </section>
 
@@ -40,48 +42,16 @@
       </section>
 
       <section class="open-source">
-        <h3>Open source projects</h3>
+        <h2>Open source projects</h2>
         <!-- reference - chips to cards  -->
         <!-- source: https://github.com/Polymer/core-animated-pages/blob/master/demos/music.html -->
         <!-- demo: https://www.polymer-project.org/components/core-animated-pages/demos/music.html -->
         <my-popup-card></my-popup-card>
       </section>
 
-      <div class="presentations">
-        <h3>Presentations</h3>
-        <ul>
-          <li>Introduction to Node.js</li>
-          <li>Web Components using Polymer</li>
-        </ul>
-      </div>
-
-      <div class="content">
-        Hello world
-      </div>
-      <div class="content">
-        Hello world
-      </div>
-      <div class="content">
-        Hello world
-      </div>
-      <div class="content">
-        Hello world
-      </div>
-      <div class="content">
-        Hello world
-      </div>
-      <div class="content">
-        Hello world
-      </div>
-      <div class="content">
-        Hello world
-      </div>
-      <div class="content">
-        Hello world
-      </div>
-      <div class="content">
-        Hello world
-      </div>
+      <section class="academic">
+        <h2>Academic achievements</h2>
+      </section>
     </core-scroll-header-panel>
   </template>
   <script>
@@ -91,9 +61,9 @@
     Polymer({
       ready:function() {
         titleStyle = this.$.title.style;
-        var profilePic = this.$.profilePic;
+        var profile = this.$.profile;
         setTimeout(function() {
-          profilePic.classList.add('slide-down');
+          profile.classList.add('show');
         }, 150);
       },
       onHeaderTransform: function (event, detail, sender) {
@@ -103,6 +73,9 @@
           scale = newScale;
           titleStyle.transform = titleStyle.webkitTransform = titleStyle.mozTransform = titleStyle.msTransform = 'scale(' + scale + ')';
         }
+      },
+      onScroll: function (event, detail, sender) {
+        console.log(detail.target.scrollTop);
       }
     });
 
