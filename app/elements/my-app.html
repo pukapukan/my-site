@@ -14,8 +14,9 @@
       <core-toolbar id="mainheader" class="tall layout">
         <div class="top"></div>
         <div flex></div>
+        <!-- <a href="//twitter.com/hyunjo_on"><my-font-awesome attr="fa-twitter"></my-font-awesome></a> -->
+        <a href="//medium.com/@grunty"><my-font-awesome attr="fa-medium"></my-font-awesome></a>
         <a href="//github.com/pukapukan"><my-font-awesome attr="fa-github"></my-font-awesome></a>
-        <a href="//twitter.com/hyunjo_on"><my-font-awesome attr="fa-twitter"></my-font-awesome></a>
         <a href="//www.linkedin.com/in/jasonhyunjoonpark"><my-font-awesome attr="fa-linkedin"></my-font-awesome></a>
 
         <div class="indent"></div>
@@ -29,7 +30,7 @@
           <div class="border"></div>
         </div>
         <div class="myself" auto-vertical>
-          Hi, my name is Jason (a.k.a. Hyunjoon) and I'm a .NET/JS geek. I value software craftmanship and believe in harmony and synergy that comes from a good team and seasoned leader.
+          Hi, my name is Jason (a.k.a. Hyunjoon) and I'm a .NET/JS geek. I value software craftmanship and believe in harmony and synergy that comes from a great team, an awesome culture and a seasoned leader.
         </div>
       </section>
 
@@ -86,6 +87,7 @@
   <script>
   (function () {
     var titleStyle;
+    var scale;
     Polymer({
       ready:function() {
         titleStyle = this.$.title.style;
@@ -96,8 +98,11 @@
       },
       onHeaderTransform: function (event, detail, sender) {
         var m = detail.height - detail.condensedHeight;
-        var scale = Math.max(0.5, (m - detail.y) / (m / 0.5)  + 0.5);
-        titleStyle.transform = titleStyle.webkitTransform = titleStyle.mozTransform = titleStyle.msTransform = 'scale(' + scale + ')';
+        var newScale = Math.max(0.5, (m - detail.y) / (m / 0.5)  + 0.5);
+        if(scale != newScale) {
+          scale = newScale;
+          titleStyle.transform = titleStyle.webkitTransform = titleStyle.mozTransform = titleStyle.msTransform = 'scale(' + scale + ')';
+        }
       }
     });
 

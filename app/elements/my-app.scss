@@ -17,8 +17,7 @@ core-toolbar#mainheader{
 }
 
 core-scroll-header-panel::shadow #headerBg {
-  background-image: url(/images/nz_national_park.jpg);
-  @include prefix(filter, blur(2px));
+  background-image: url(/images/background/nz_national_park.jpg);
 }
 
 core-scroll-header-panel::shadow #condensedHeaderBg {
@@ -48,7 +47,6 @@ section[page] {
   border-radius: 150px;
   background-image: url('/images/me/profile.jpg');
   background-size: cover;
-  background-position-x: -83px;
   background-repeat: no-repeat;
   opacity: 0.1;
   @include prefix(transform, translateY(-30px));;
@@ -78,7 +76,9 @@ section[page] {
   @extend %center;
   font-family: $description-font;
   font-size: 1.5rem;
+  line-height: 2em;
   max-width: 400px;
+  max-width: 50vw;
 }
 
 .content {
@@ -101,27 +101,27 @@ section[page] {
   transition: all 0.3s ease-out;
 }
 
-a {
+core-toolbar a {
   color: white;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    border: 1px solid white;
+    transform: translate(0px, 6px);
+    opacity: 0;
+    color: #999;
+    transition: transform .2s ease-out, opacity .2s ease-out;
+  }
+
+  &:hover:after {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
 }
 
-a:after {
-  content: '';
-  display: block;
-  width: 100%;
-  border: 1px solid white;
-  transform: translate(0px, 6px);
-  opacity: 0;
-  color: #999;
-  transition: transform .2s ease-out, opacity .2s ease-out;
-}
-
-a:hover:after {
-  transform: translate(0px, 0px);
-  opacity: 1;
-}
-
-@media screen and (max-width: $small) {
+@media only screen and (max-width: $tablet-screen) {
   core-toolbar .indent {
     margin-left: 4px !important;
   }
@@ -135,10 +135,41 @@ a:hover:after {
     margin-bottom: 100px;
   }
 
+  core-scroll-header-panel::shadow #mainContainer {
+    padding: 0px 12px;
+  }
+}
+
+@media only screen and (max-width: $phone-screen) {
+  core-toolbar .indent {
+    margin-left: 4px !important;
+  }
+
+  .space {
+    height: 220px;
+  }
+
+  .profile {
+    width: 225px;
+    height: 225px;
+
+    .border {
+      left: 8px;
+      top: 8px;
+      width: 202px;
+      height: 202px;
+    }
+  }
+
+  .about {
+    margin-bottom: 100px;
+  }
+
   .myself {
-    position: relative;
-    left: initial;
-    margin-left: initial;
+    font-size: 1.25rem;
+    line-height: 2rem;
+    max-width: 100%;
+    text-align: center;
   }
 
   core-scroll-header-panel::shadow #mainContainer {

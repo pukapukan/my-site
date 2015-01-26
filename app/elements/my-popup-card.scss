@@ -1,0 +1,76 @@
+:host {
+  display:block;
+  position:relative;
+}
+
+#chipSection {
+  position:relative;
+}
+
+#chipSection:not(.core-selected):not([animate]) {
+  display: block !important;
+  visibility: hidden;
+}
+
+.chip-container {
+  text-align: center;
+}
+.chip {
+  display: inline-block;
+  position: relative;
+  border-radius: 3px;
+  margin: 4px;
+  overflow: hidden;
+  text-align: start;
+  vertical-align: top;
+  max-width: 200px;
+  background-color: #fff;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+}
+.chip-top {
+  width: 200px;
+  height: 200px;
+}
+.chip-bottom {
+  padding: 8px;
+  line-height: 1.5;
+}
+.chip-header {
+  font-weight: bold;
+}
+#details {
+  padding: 0px 10% 0;
+}
+.card {
+  height: 400px;
+  border-radius: 3px;
+  text-align: start;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.card-left {
+  position:absolute;
+  width: 200px;
+  height: 400px;
+}
+.card-right {
+  position: relative;
+  margin-left: 200px;
+  padding: 24px;
+}
+.card-icon {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin-right: 16px;
+}
+.card-header {
+  font-size: 2em;
+}
+.close-button {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  cursor: pointer;
+}

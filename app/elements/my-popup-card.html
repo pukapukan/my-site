@@ -3,155 +3,96 @@
 
 <polymer-element name="my-popup-card">
   <template>
+    <link href="/elements/my-popup-card.css" rel="stylesheet">
 
-  <style>
-  :host {
-    display:block;
-    position:relative;
-  }
+    <core-animated-pages selected="{{page}}" transitions="hero-transition" on-core-animated-pages-transition-end="{{complete}}">
+      <section id="chipSection">
+        <div class="chip-container" hero-p on-tap="{{transition}}">
+          <template repeat="{{items as item}}">
+            <div class="chip" hero-id="{{item.project}}" hero?="{{selectedChip === item}}">
+              <div class="chip-top" style="background:{{item.color}};" hero-id="{{item.project}}-art" hero?="{{selectedChip === item}}"></div>
+              <div class="chip-bottom">
+                <div class="chip-header">{{item.project}}</div>
+                <div class="chip-subHeader">{{item.description.short}}</div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </section>
 
-  #chipSection {
-    position:relative;
-  }
-
-  #chipSection:not(.core-selected):not([animate]) {
-    display: block !important;
-    visibility: hidden;
-  }
-
-  .chip-container {
-    text-align: center;
-  }
-  .chip {
-    display: inline-block;
-    position: relative;
-    border-radius: 3px;
-    margin: 4px;
-    overflow: hidden;
-    text-align: start;
-    background-color: #fff;
-    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
-  }
-  .chip-top {
-    width: 200px;
-    height: 200px;
-  }
-  .chip-bottom {
-    padding: 8px;
-    line-height: 1.5;
-  }
-  .chip-mainHeader-subHeader {
-    font-weight: bold;
-  }
-  #details {
-    padding: 0px 10% 0;
-  }
-  .card {
-    height: 400px;
-    border-radius: 3px;
-    text-align: start;
-    overflow: hidden;
-    background: #fff;
-    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  .card-left {
-    width: 400px;
-  }
-  .card-right {
-    padding: 24px;
-  }
-  .card-icon {
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    margin-right: 16px;
-  }
-  .card-mainHeader-subHeader {
-    font-size: 2em;
-  }
-</style>
-
-<core-animated-pages selected="{{page}}" transitions="hero-transition" on-core-animated-pages-transition-end="{{complete}}">
-
-  <section id="chipSection">
-
-    <div class="chip-container" hero-p on-tap="{{transition}}">
-
-      <template repeat="{{items as item}}">
-
-        <div class="chip" hero-id="{{item.subHeader}}-{{item.mainHeader}}" hero?="{{selectedChip === item }}">
-          <div class="chip-top" style="background:{{item.color}};" hero-id="{{item.subHeader}}-{{item.mainHeader}}-art" hero?="{{selectedChip === item}}"></div>
-          <div class="chip-bottom">
-            <div class="chip-mainHeader-subHeader">{{item.mainHeader}}</div>
-            <div class="chip-subHeader">{{item.subHeader}}</div>
+      <section id="cardSection">
+        <div class="card" layout vertical hero-id="{{selectedChip.project}}" hero>
+          <div class="card-left" style="background:{{selectedChip.color}};" hero-id="{{selectedChip.project}}-art" hero></div>
+          <div class="card-right" flex>
+            <div class="close-button" on-tap="{{transition}}"><my-font-awesome attr="fa-close fa-3x"></my-font-awesome></div>
+            <div layout horizontal center>
+              <div class="card-icon" style="background:{{selectedChip.color}};"></div>
+              <div flex>
+                <div class="card-header">{{selectedChip.project}}</div>
+                <div class="card-subHeader">{{selectedChip.stacks}}</div>
+              </div>
+            </div>
+            <div class="description">
+            </div>
           </div>
         </div>
+      </section>
 
-      </template>
-
-    </div>
-  </section>
-
-  <section id="cardSection">
-
-    <div class="card" layout vertical hero-id="{{selectedChip.subHeader}}-{{selectedChip.mainHeader}}" hero on-tap="{{transition}}">
-      <div class="card-left" style="background:{{selectedChip.color}};" hero-id="{{selectedChip.subHeader}}-{{selectedChip.mainHeader}}-art" hero></div>
-      <div class="card-right" flex>
-        <div layout horizontal center>
-          <div>
-            <div class="card-icon" style="background:{{selectedChip.color}};"></div>
-          </div>
-          <div flex>
-            <div class="card-mainHeader-subHeader">{{selectedChip.mainHeader}}</div>
-            <div class="card-mainHeader-subHeader">{{selectedChip.subHeader}}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-</core-animated-pages>
-
-</template>
-<script>
-  Polymer('my-popup-card', {
-    page: 0,
-    items: [
-      {
-        mainHeader: 'Crawl2Tweet',
-        link: 'https://github.com/pukapukan/Crawl2Tweet',
-        subHeader: 'node, heroku',
-        color: 'gray',
-      },
-      {
-        mainHeader: 'passport-nate',
-        link: 'https://github.com/pukapukan/passport-nate',
-        subHeader: 'node, passport',
-        color: 'black'
-      },
-      {
-        mainHeader: 'FBench IDE',
-        link: 'http://homepages.engineering.auckland.ac.nz/~vyatkin/fbench/index.html',
-        subHeader: 'Java, Function Block',
-        color: 'gray'
-      },
-      {
-        mainHeader: 'Seoul',
-        subHeader: 'South Koera',
-        color: 'black'
+    </core-animated-pages>
+  </template>
+  <script>
+    Polymer('my-popup-card', {
+      page: 0,
+      items: [
+        {
+          project: 'Crawl2Tweet',
+          language: 'javascript',
+          description: {
+            short: 'Web crawler that tweets',
+            long: 'Crawl2Tweet is a Web crawler + Twitterbot that tweets new articles from web sites.  All you need to provide is Twitter API keys, connection string to MongoDB, sites to crawl and a function to filter.  I recommend using MongoLab/Heroku for hosting this application.  Followings are Twitter accounts powered by Crawl2Tweet: @InvenLoL, @AndroidPubBot and @TLGREngineering.'
+          },
+          url: 'https://github.com/pukapukan/Crawl2Tweet',
+          color: 'gray',
+        },
+        {
+          project: 'passport-nate',
+          language: 'javascript',
+          description: {
+            short: 'nate/cyworld strategy for passport.js',
+            long: 'Passport is authentication middleware for Node.js.  passport-nate is a Node module that implements Passport strategy for Nate (Cyworld) using OAuth.'
+          },
+          url: 'https://github.com/pukapukan/passport-nate',
+          color: 'black'
+        },
+        {
+          project: 'FBench IDE',
+          language: 'Java',
+          description: {
+            short: 'Graphical interactive IDE built for IEC61499 Function Block'
+          },
+          stacks: ['java', 'functino block'],
+          url: 'http://homepages.engineering.auckland.ac.nz/~vyatkin/fbench/index.html',
+          color: 'gray'
+        },
+        {
+          project: 'Web Fundamentals',
+          language: 'translation',
+          description: {
+            short: 'Contribute to Korean translation'
+          },
+          url: 'https://github.com/google/WebFundamentals',
+          color: 'black'
+        }
+      ],
+      selectedChip: null,
+      transition: function(e, index, el) {
+        if (this.page === 0 && e.target.templateInstance.model.item) {
+          this.selectedChip = e.target.templateInstance.model.item;
+          this.page = 1;
+        } else {
+          this.page = 0;
+        }
       }
-    ],
-    selectedChip: null,
-    transition: function(e) {
-      console.log(arguments)
-      if (this.page === 0 && e.target.templateInstance.model.item) {
-        this.selectedChip = e.target.templateInstance.model.item;
-        this.page = 1;
-      } else {
-        this.page = 0;
-      }
-    }
-  });
-</script>
+    });
+  </script>
 </polymer-element>

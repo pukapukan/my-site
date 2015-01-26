@@ -6,63 +6,29 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
-
-img {max-width: 100%;}
-
-// a {
-//   text-decoration: none;
-// }
-
+a, a:visited {
+  color: $light-blue;
+}
+img {
+  max-width: 100%;
+}
 .container {
   max-width: 1100px;
   margin: 0 auto;
 }
-
 h1, h2, h3, h4 {
   font:{
     family: $base-font-title;
     weight: 500;
   }
 }
-
+my-font-awesome {
+  margin-right: 7px;
+}
 .project-name {
   text-align: center;
   padding: 10px 0;
 }
-
-// Header
-header {
-  background: $secondary-color;
-  padding: 10px;
-  @include prefix(box-shadow, 0 3px 3px rgba(0,0,0,0.05));
-  @extend %clearfix;
-
-  .logo {
-    color: $primary-color;
-    float: left;
-    font:{
-      family: $base-font-title;
-      size: 22px;
-      weight: 500;
-    }
-
-    > span {
-      color: lighten($primary-color, 20%);
-      font-weight: 300;
-    }
-  }
-
-  .social {
-    float: right;
-    .btn {
-      font-family: "Dosis";
-      font-size: 14px;
-      margin: 10px 5px;
-    }
-  }
-}
-
-
 // Timeline
 #timeline {
   width: 90%;
@@ -79,121 +45,126 @@ header {
     top: 0;
     position: absolute;
   }
-
   &:after {
     content: "";
     clear: both;
     display: table;
     width: 100%;
   }
+  ul {
+    margin-top: 0;
+  }
+}
+.timeline-item {
+  margin-bottom: 50px;
+  position: relative;
+  @extend %clearfix;
 
-  .timeline-item {
-    margin-bottom: 50px;
-    position: relative;
-    @extend %clearfix;
-
-    .timeline-icon {
+  .timeline-content {
+    width: 45%;
+    background: #fff;
+    padding: 20px;
+    border: 4px solid $timeline-color;;
+    will-change: transform, box-shadow;
+    @include prefix(border-radius, 5px);
+    @include prefix(transition, all .3s ease);
+    &:hover {
+      @include prefix(transform, translate(-12px, -12px));
+      @include prefix(box-shadow, 12px 12px 2px rgba(0,0,0,0.1));
+    }
+    h2 {
+      padding: 15px;
       background: $timeline-color;
-      width: 50px;
-      height: 50px;
-      position: absolute;
-      top: 0;
-      left: 50%;
-      overflow: hidden;
-      margin-left: -23px;
-      @include prefix(border-radius, 50%);
-
-      & > * {
-        position: relative;
-        top: 14px;
-        left: 14px;
-        height: 21px;
-        width:21px;
-      }
+      color: #fff;
+      margin: -20px -20px 0 -20px;
+      font-weight: 300;
+      @include prefix(border-radius, 3px 3px 0 0);
     }
-
-    .timeline-content {
-      width: 45%;
-      background: #fff;
-      padding: 20px;
-      border: 4px solid;
-      // @include prefix(box-shadow, 8px 8px 1px rgba(0,0,0,0.1));
-      @include prefix(border-radius, 5px);
-      @include prefix(transition, all .3s ease);
-      will-change: transform, box-shadow;
-
-      h2 {
-        padding: 15px;
-        background: $timeline-color;
-        color: #fff;
-        margin: -20px -20px 0 -20px;
-        font-weight: 300;
-        @include prefix(border-radius, 3px 3px 0 0);
-      }
-
-      &:hover {
-        @include prefix(transform, translate(-4px, -4px));
-        @include prefix(box-shadow, 12px 12px 2px rgba(0,0,0,0.1));
-      }
-    }
-
-    .timeline-content-title > img {
-      height: 50px;
-    }
-
-    .timeline-linker {
-      position: absolute;
-      top: 23px;
-      left: 44%;
-      width: 5%;
-      border-top: 5px solid $timeline-color;
-      z-index: -1;
-    }
-
-    .period {
-      background: $timeline-color;
-      color: white;
-      padding: 10px;
-      border-radius: 0 0 0 8px;
-      max-width: 8.5em;
-      text-align: center;
-      margin: -20px -20px 0px auto;
-    }
-
     .role {
       color: lighten(black, 20%);
       font-size: 1.5rem;
     }
-
-    .description {
-      margin: 30px 0;
+    .subheader {
+      margin: 30px 0 5px 0;
+      font-size: 1.25rem;
     }
-
-    &[right] {
-      .timeline-content {
-        float: right;
+    .project {
+      margin-bottom: 30px;
+      border-left: 5px solid rgb(190, 190, 190);
+      padding-left: 10px;
+    }
+    .client {
+      font-size: 1.25rem;
+      margin: 10px 0 3px 0;
+      font-weight: 600;
+    }
+    .project-role {
+      &:before {
+        content: '- '
       }
-      .timeline-linker {
-        left: 50%;
+      color: grey;
+    }
+    .stacks {
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        display: inline-block;
+        padding: 5px;
+        border-radius: 3px;
+        background-color: $red;
+        margin: 3px;
+        color: white;
       }
     }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
+  }
+  .timeline-content-title > img {
+    height: 50px;
+  }
+  &[right] {
+    .timeline-content {
+      float: right;
     }
-    li {
-      display: inline-block;
-      padding: 5px;
-      border-radius: 3px;
-      background-color: $red;
-      margin: 3px;
-      color: white;
+    .timeline-linker {
+      left: 50%;
     }
   }
 }
+.timeline-linker {
+  position: absolute;
+  top: 30px;
+  left: 44%;
+  width: 5%;
+  border-top: 4px solid $timeline-color;
+  z-index: -1;
+}
+.timeline-period {
+  background: $timeline-color;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  overflow: hidden;
+  margin-left: -29px;
+  color: white;
+  text-align: center;
+  font-size: 0.7rem;
+  padding-top: 9px;
+  line-height: 0.95rem;
+  @include prefix(border-radius, 50%);
 
+  .content > div {
+    height: 15px;
+    line-height:15px;
+  }
+  .wave {
+    font-size: 1rem;
+    font-weight: bolder;
+  }
+}
 // Buttons
 .btn {
   padding: 5px 15px;
@@ -217,17 +188,16 @@ header {
   }
 }
 
-@media screen and (max-width: $small) {
+@media screen and (max-width: $tablet-screen) {
   #timeline {
     margin: 30px;
     padding: 0;
     &:before {
       left: 0;
     }
-
     .timeline-item {
       .timeline-content {
-        width: 90%;
+        width: 93%;
         float: right;
 
         &:before, &[right]:before {
@@ -237,10 +207,61 @@ header {
           border-right: 7px solid $timeline-color;
         }
       }
+    }
+    .timeline-period {
+      left: 0;
+    }
+    .timeline-linker {
+      left: 0 !important;
+      width: 125px;
+    }
+  }
+}
+@media screen and (max-width: $phone-screen) {
+  #timeline {
+    margin: 0 3% 0 auto;
+    padding: 0;
+    &:before {
+      display: none;
+    }
+    .timeline-item {
+      .timeline-content {
+        width: 100%;
+        float: none;
+        @include prefix(transform, translate(-12px, -12px));
+        @include prefix(box-shadow, 12px 12px 2px rgba(0,0,0,0.1));
 
-      .timeline-icon {
-        left: 0;
+        &:before, &[right]:before {
+          left: 10%;
+          margin-left: -6px;
+          border-left: 0;
+          border-right: 7px solid $timeline-color;
+        }
       }
+    }
+    .timeline-period {
+      width: initial;
+      height: initial;
+      top: initial;
+      left: initial;
+      overflow: initial;
+      background: transparent;
+      position: relative;
+      color: black;
+      text-align: left;
+      font-size: 1.2rem;
+      padding: 5px;
+      margin: 0;
+      @include prefix(transform, translate(-12px, -12px));
+      @include prefix(border-radius, 0px);
+
+      & > div {
+        display: inline-block;
+      }
+    }
+    .timeline-linker {
+      left: 0 !important;
+      width: 125px;
     }
   }
 }
