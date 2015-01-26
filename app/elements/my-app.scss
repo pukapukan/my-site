@@ -5,11 +5,21 @@
   display: block;
   height: 100%;
 }
+section {
+  padding: 20px 68px;
 
+  &:nth-child(odd) {
+    background:black;
+    padding: 20px 68px 70px 68px;
+
+    h1, h2, h3, h4 {
+      color:white;
+    }
+  }
+}
 core-scroll-header-panel {
   height: 100%;
 }
-
 core-toolbar#mainheader{
   color: white;
   fill: white;
@@ -20,93 +30,30 @@ core-toolbar#mainheader{
     margin: 0 4px;
   }
 }
-
 core-scroll-header-panel::shadow #headerBg {
   background-image: url(/images/background/nz_national_park.jpg);
 }
-
 core-scroll-header-panel::shadow #condensedHeaderBg {
   background-color: rgba(0, 0, 0, 0.6);
 }
-
 core-scroll-header-panel::shadow #mainContainer {
-  padding: 0px 68px;
+  // padding: 0px 68px;
   padding-top: 0px !important;
 }
-
-section[page] {
-  min-height: 100vh;
-}
-
-.space {
-  height: 250px;
-  height: calc(55vh - 200px);
-}
-
-.profile {
-  @extend %center;
-
-  height: 300px;
-  width: 300px;
-  // margin-top: 275px;
-  margin-bottom: 50px;
-  border-radius: 150px;
-  background-image: url('/images/me/profile.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 0.1;
-  @include prefix(transform, translateY(-30px));;
-  @include prefix(filter, blur(5px));
-  @include prefix(transition-property, "transform, filter");
-  @include prefix(transition-duration, 1.5s);
-  @include prefix(transition-timing-function, ease-out);
-
-  .border {
-    position:relative;
-    left:5px;
-    top:5px;
-    width:284px;
-    height:284px;
-    border:4px dashed white;
-    border-radius:150px;
-  }
-
-  &.show {
-    opacity: 1;
-    @include prefix(transform, translateY(0px));;
-    @include prefix(filter, blur(0px));
-  }
-}
-
-.myself {
-  @extend %center;
-  font-family: $description-font;
-  font-size: 1.5rem;
-  line-height: 2em;
-  max-width: 400px;
-  max-width: 50vw;
-}
-
-.content {
-  margin: 100px;
-}
-
 .title {
   font-size: 3rem;
-  transform-origin: left;
-  -ms-transform-origin: left;
-  -moz-transform-origin: left;
-  -webkit-transform-origin: left;
+  vertical-align: middle;
   will-change: transform;
+  @include prefix(origin, left);
 }
-
 .title > span {
   font-weight: bolder;
-  font-family: fantasy;
+  font-family: Lobster;
+  font-size: 3.5rem;
+  margin: 0 3px;
   color: rgb(244, 219, 51);
   transition: all 0.3s ease-out;
 }
-
 core-toolbar a {
   color: white;
 
@@ -120,7 +67,6 @@ core-toolbar a {
     color: #999;
     transition: transform .2s ease-out, opacity .2s ease-out;
   }
-
   &:hover:after {
     transform: translate(0px, 0px);
     opacity: 1;
@@ -131,18 +77,8 @@ core-toolbar a {
   core-toolbar .indent {
     margin-left: 4px !important;
   }
-
-  .profile {
-    // margin-top: 225px;
-    margin-bottom: 30px;
-  }
-
-  .about {
-    margin-bottom: 100px;
-  }
-
-  core-scroll-header-panel::shadow #mainContainer {
-    padding: 0px 12px;
+  section {
+    padding: 20px 12px 50px 12px !important;
   }
 }
 
@@ -150,35 +86,7 @@ core-toolbar a {
   core-toolbar .indent {
     margin-left: 4px !important;
   }
-
-  .space {
-    height: 220px;
-  }
-
-  .profile {
-    width: 225px;
-    height: 225px;
-
-    .border {
-      left: 8px;
-      top: 8px;
-      width: 202px;
-      height: 202px;
-    }
-  }
-
-  .about {
-    margin-bottom: 100px;
-  }
-
-  .myself {
-    font-size: 1.25rem;
-    line-height: 2rem;
-    max-width: 100%;
-    text-align: center;
-  }
-
-  core-scroll-header-panel::shadow #mainContainer {
-    padding: 0px 12px;
+  section {
+    padding: 20px 20px 70px 20px !important;
   }
 }

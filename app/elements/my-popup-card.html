@@ -10,10 +10,11 @@
         <div class="chip-container" hero-p on-tap="{{transition}}">
           <template repeat="{{items as item}}">
             <div class="chip" hero-id="{{item.project}}" hero?="{{selectedChip === item}}">
+              <div class="chip-cover"><my-font-awesome attr="fa-github fa-3x"></my-font-awesome></div>
               <div class="chip-top" style="background:{{item.color}};" hero-id="{{item.project}}-art" hero?="{{selectedChip === item}}"></div>
               <div class="chip-bottom">
                 <div class="chip-header">{{item.project}}</div>
-                <div class="chip-subHeader">{{item.description.short}}</div>
+                <div class="chip-subheader">{{item.description.short}}</div>
               </div>
             </div>
           </template>
@@ -21,6 +22,7 @@
       </section>
 
       <section id="cardSection">
+        <link id="card1" rel="import" href="cards/my-card-crawl2tweet.html">
         <div class="card" layout vertical hero-id="{{selectedChip.project}}" hero>
           <div class="card-left" style="background:{{selectedChip.color}};" hero-id="{{selectedChip.project}}-art" hero></div>
           <div class="card-right" flex>
@@ -49,7 +51,7 @@
           language: 'javascript',
           description: {
             short: 'Web crawler that tweets',
-            long: 'Crawl2Tweet is a Web crawler + Twitterbot that tweets new articles from web sites.  All you need to provide is Twitter API keys, connection string to MongoDB, sites to crawl and a function to filter.  I recommend using MongoLab/Heroku for hosting this application.  Followings are Twitter accounts powered by Crawl2Tweet: @InvenLoL, @AndroidPubBot and @TLGREngineering.'
+            long: 'Crawl2Tweet is a Web crawler + Twitterbot that tweets new articles from web sites.  It can be easily hosted on free tiers of any Paas and MongoDB on cloud.  Followings are Twitter accounts powered by Crawl2Tweet: @InvenLoL, @AndroidPubBot and @TLGREngineering.'
           },
           url: 'https://github.com/pukapukan/Crawl2Tweet',
           color: 'gray',
@@ -78,7 +80,7 @@
           project: 'Web Fundamentals',
           language: 'translation',
           description: {
-            short: 'Contribute to Korean translation'
+            short: 'Translate Google\'s Web Fundamental into Korean'
           },
           url: 'https://github.com/google/WebFundamentals',
           color: 'black'

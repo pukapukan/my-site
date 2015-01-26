@@ -1,0 +1,27 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<polymer-element name="my-self">
+  <template>
+    <link href="/elements/my-self.css" rel="stylesheet">
+
+    <section id="about" class="about" page>
+      <div class="space"></div>
+      <div class="profile">
+        <div class="border"></div>
+      </div>
+      <div class="myself" auto-vertical>
+        Hi, my name is <b>Jason</b> (a.k.a. Hyunjoon) and I'm a <b>Korea-born Kiwi</b> + <b>.NET/JS geek</b>.  As a software engineer, I value <B>software craftmanship</b> and believe in harmony and synergy that comes from a great team, an awesome culture and a seasoned leader.
+      </div>
+    </section>
+  </template>
+  <script>
+  Polymer({
+    ready:function() {
+      var about = this.$.about;
+      setTimeout(function() {
+        about.classList.add('show');
+      }, 150);
+    },
+  });
+  </script>
+</polymer-element>

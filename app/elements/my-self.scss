@@ -1,0 +1,93 @@
+@import "../styles/utilities";
+@import "../styles/variables";
+
+.about.show {
+  .myself, .profile {
+    opacity: 1;
+    @include prefix(filter, blur(0px));
+    @include prefix(transform, translateY(0px));;
+  }
+}
+
+.profile {
+  @extend %center;
+
+  height: 300px;
+  width: 300px;
+  margin-bottom: 50px;
+  border-radius: 150px;
+  background-image: url('/images/me/profile.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+  @include prefix(transform, translateY(-30px));;
+  @include prefix(filter, blur(5px));
+  @include prefix(transition-property, "transform, filter");
+  @include prefix(transition-duration, 2s);
+  @include prefix(transition-timing-function, ease-out);
+
+  .border {
+    position:relative;
+    left:5px;
+    top:5px;
+    width:284px;
+    height:284px;
+    border:4px dashed white;
+    border-radius:150px;
+  }
+}
+.myself {
+  @extend %center;
+  font: {
+    family: $description-font;
+    size: 1.5rem;
+    weight: 100;
+  }
+  line-height: 2em;
+  max-width: 400px;
+  max-width: 50vw;
+  @include prefix(transition-timing-function, ease);
+  @include prefix(transition-property, "filter");
+  @include prefix(transition-duration, 2s);
+  @include prefix(filter, blur(10px));
+
+  b {
+    font-weight: 400;
+  }
+}
+.space {
+  height: 250px;
+  height: calc(50vh - 250px);
+}
+@media only screen and (max-width: $tablet-screen) {
+  .profile {
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (max-width: $phone-screen) {
+  .space {
+    height: 220px;
+  }
+  .profile {
+    width: 225px;
+    height: 225px;
+    .border {
+      left: 8px;
+      top: 8px;
+      width: 202px;
+      height: 202px;
+    }
+  }
+  .myself {
+    font-size: 1.25rem;
+    line-height: 2rem;
+    max-width: 100%;
+    text-align: center;
+  }
+}
+@media screen and (max-height: 1000px) {
+  .space {
+    height: 250px;
+  }
+}

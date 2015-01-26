@@ -5,17 +5,19 @@ $red: #ee4d4d;
 $blue: #2b2e48;
 $light-blue: rgb(10, 195, 255);
 $black: #2a2a2a;
+$light-gray: lighten($black, 75%);
+$dark-gray: lighten($black, 65%);
 $primary-color: $black;
 $secondary-color: $blue;
 
 // Typography
-$base-font-title: "Dosis", arial, tahoma, verdana;
-$base-font-color: #726f77;
-
-$description-font: Dosis, Helvetica, Arial, sans-serif;
+$base-font: Roboto, Helvetica, arial, tahoma, verdana;
+$title-font: Dosis, Helvetica, arial, tahoma, verdana;
+$description-font: Roboto, Helvetica, Arial, sans-serif;
 
 // Timeline
-$timeline-color: lighten($primary-color, 10%);
+$timeline-color: $light-gray;
+$timeline-highlight-color: $dark-gray;
 
 // screen sizes
 $tablet-screen: 1024px;

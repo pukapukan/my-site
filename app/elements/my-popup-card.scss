@@ -1,3 +1,5 @@
+@import "../styles/utilities";
+
 :host {
   display:block;
   position:relative;
@@ -25,7 +27,26 @@
   vertical-align: top;
   max-width: 200px;
   background-color: #fff;
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+  border: 1px solid white;
+  cursor: pointer;
+
+  &:hover {
+    .chip-cover {
+      opacity: 0.7;
+    }
+  }
+}
+.chip-cover {
+  opacity: 0;
+  transition: 0.5s all ease;
+  width: 200px;
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+  text-align: center;
+  top: 10%;
+  font-size: 3rem;
+  color: white;
 }
 .chip-top {
   width: 200px;
@@ -36,7 +57,13 @@
   line-height: 1.5;
 }
 .chip-header {
-  font-weight: bold;
+  font: {
+    size: 1.2rem;
+    weight: bold;
+  }
+}
+.chip-subheader {
+  font-size: 0.8rem;
 }
 #details {
   padding: 0px 10% 0;
