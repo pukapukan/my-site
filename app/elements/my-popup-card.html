@@ -11,7 +11,7 @@
           <template repeat="{{items as item}}">
             <div class="chip" hero-id="{{item.project}}" hero?="{{selectedChip === item}}">
               <div class="chip-cover"><my-font-awesome attr="fa-github fa-3x"></my-font-awesome></div>
-              <div class="chip-top" style="background:{{item.color}};" hero-id="{{item.project}}-art" hero?="{{selectedChip === item}}"></div>
+              <div class="chip-top" style="background-color:{{item.color}};background-image:url(images/project/{{item.project}}.png);" hero-id="{{item.project}}-art" hero?="{{selectedChip === item}}"></div>
               <div class="chip-bottom">
                 <div class="chip-header">{{item.project}}</div>
                 <div class="chip-subheader">{{item.description.short}}</div>
@@ -23,7 +23,7 @@
 
       <section id="cardSection">
         <div class="card" layout vertical hero-id="{{selectedChip.project}}" hero>
-          <div class="card-left" style="background:{{selectedChip.color}};" hero-id="{{selectedChip.project}}-art" hero></div>
+          <div class="card-left" style="background-color:{{selectedChip.color}};background-image:url(images/project/{{selectedChip.project}}.png);" hero-id="{{selectedChip.project}}-art" hero></div>
           <div class="card-right" flex>
             <div class="close-button" on-tap="{{transition}}"><my-font-awesome attr="fa-close fa-3x"></my-font-awesome></div>
             <div layout horizontal center>
