@@ -8,6 +8,12 @@
   }
 }
 
+%center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @mixin prefix($prop, $val) {
   @each $prefix in '-webkit-', '-moz-', '-ms-', '' {
     #{$prefix}#{$prop}: $val;
@@ -15,14 +21,22 @@
 }
 
 @mixin filter($properties) {
-  // Your vendor prefixing stuff here, I am using Bourbon:
   @include prefix(filter, $properties);
 }
 
-%center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
 }
 
 // css3 filters

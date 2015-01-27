@@ -1,10 +1,10 @@
-<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="my-font-awesome.html">
 
 <polymer-element name="my-timeline">
   <template>
     <link href="/elements/my-timeline.css" rel="stylesheet">
-    <section id="timeline">
+    <div id="timeline">
       <template repeat="{{item, index in items}}">
         <div class="timeline-item" right?="{{index | isOdd}}">
           <div class="timeline-linker">
@@ -12,7 +12,7 @@
 
           <div class="timeline-period">
             <div>{{item.from}}</div>
-            <div class="wave">~</div>
+            <div class="wave">-</div>
             <div>{{item.to}}</div>
           </div>
           <div class="timeline-content">
@@ -75,7 +75,7 @@
           </div>
         </div>
       </template>
-    </section>
+    </div>
   </template>
   <script>
   Polymer({

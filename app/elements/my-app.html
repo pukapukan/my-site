@@ -1,7 +1,7 @@
-<link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/core-scroll-header-panel/core-scroll-header-panel.html">
-<link rel="import" href="../../bower_components/core-toolbar/core-toolbar.html">
-<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/core-scroll-header-panel/core-scroll-header-panel.html">
+<link rel="import" href="../bower_components/core-toolbar/core-toolbar.html">
+<link rel="import" href="../bower_components/paper-ripple/paper-ripple.html">
 <link rel="import" href="my-self.html">
 <link rel="import" href="my-font-awesome.html">
 <link rel="import" href="my-popup-card.html">
@@ -21,9 +21,8 @@
       }
     </style>
 
-    <core-scroll-header-panel id="headerPanel" condenses="true" keepCondensedHeader="true" on-core-header-transform="{{onHeaderTransform}}">
+    <core-scroll-header-panel id="headerPanel" condenses="true" keepCondensedHeader="true" on-core-header-transform="{{onHeaderTransform}}" on-scroll="{{onScroll}}">
       <core-toolbar id="mainheader" class="tall layout">
-        <div flex></div>
         <div class="top">
           <!-- <a href="//twitter.com/hyunjo_on"><my-font-awesome attr="fa-twitter"></my-font-awesome></a> -->
           <a href="//medium.com/@grunty"><my-font-awesome attr="fa-medium"></my-font-awesome></a>
@@ -78,7 +77,6 @@
         }
       }
     });
-
   })();
   </script>
 </polymer-element>

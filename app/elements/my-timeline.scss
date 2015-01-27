@@ -54,6 +54,14 @@ my-font-awesome {
   position: relative;
   @extend %clearfix;
 
+  &:hover {
+    .timeline-content {
+      border-color: $timeline-highlight-color;
+      @include prefix(transform, translate(-12px, -12px));
+      @include prefix(box-shadow, 12px 12px 2px rgba(0,0,0,0.1));
+    }
+  }
+
   .timeline-content {
     width: 45%;
     background: #fff;
@@ -62,11 +70,7 @@ my-font-awesome {
     will-change: transform, box-shadow;
     @include prefix(border-radius, 5px);
     @include prefix(transition, all .3s ease);
-    &:hover {
-      border-color: $timeline-highlight-color;
-      @include prefix(transform, translate(-12px, -12px));
-      @include prefix(box-shadow, 12px 12px 2px rgba(0,0,0,0.1));
-    }
+
     h2 {
       padding: 15px;
       background: $timeline-color;
@@ -158,8 +162,7 @@ my-font-awesome {
     line-height:15px;
   }
   .wave {
-    font-size: 1rem;
-    font-weight: bolder;
+    font-size: 1.1rem;
   }
 }
 // Buttons

@@ -29,12 +29,15 @@ core-toolbar#mainheader{
     display: inline-block;
     margin: 0 4px;
   }
+  .top {
+    margin-left: auto;
+  }
 }
 core-scroll-header-panel::shadow #headerBg {
   background-image: url(/images/background/nz_national_park.jpg);
 }
 core-scroll-header-panel::shadow #condensedHeaderBg {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 core-scroll-header-panel::shadow #mainContainer {
   // padding: 0px 68px;
@@ -44,7 +47,7 @@ core-scroll-header-panel::shadow #mainContainer {
   font-size: 3rem;
   vertical-align: middle;
   will-change: transform;
-  @include prefix(origin, left);
+  @include prefix(transform-origin, left);
 }
 .title > span {
   font-weight: bolder;
