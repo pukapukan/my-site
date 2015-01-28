@@ -4,3 +4,4 @@ node_modules
 dist
 npm-debug.log
 .swp
+bower_components
