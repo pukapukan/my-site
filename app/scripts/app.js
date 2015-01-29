@@ -8,6 +8,7 @@
     // Perform some behaviour
     console.log('Polymer is ready to rock!');
 
+    document.querySelector('#loader').classList.add('hidden');
     if (detectMobile()) {
       document.body.classList.add('mobile');
       window.scroll(0, 1);
