@@ -6,17 +6,19 @@ body {
   font-family: Lato, "Helvetica Neue", Helvetica, "Nanum Gothic", Arial, sans-serif;
   color: #333;
   &.mobile {
-    height: 101%;
+    height: 101vh !important;
   }
 }
+
 #loader {
   position: absolute;
+  top: 45%;
   left: 50%;
   width: 400px;
   margin-left: -200px;
-  top: 45%;
   font-size: 2rem;
   vertical-align: middle;
+  text-align: center;
   @include prefix(transition, opacity 0.15s ease);
 }
 .hidden {
