@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<polymer-element name="my-self">
+<polymer-element name="my-self" noscript>
   <template>
     <link href="/elements/my-self.css" rel="stylesheet">
 
@@ -14,14 +14,4 @@
       </div>
     </section>
   </template>
-  <script>
-  Polymer({
-    ready:function() {
-      var about = this.$.about;
-      setTimeout(function() {
-        about.classList.add('show');
-      }, 150);
-    },
-  });
-  </script>
 </polymer-element>

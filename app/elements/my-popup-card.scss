@@ -1,3 +1,4 @@
+@import "../styles/variables";
 @import "../styles/utilities";
 
 :host {
@@ -30,24 +31,24 @@
   border: 1px solid white;
   cursor: pointer;
 
-  &:hover {
-    .chip-cover {
-      opacity: 0.7;
-    }
-  }
+  // &:hover {
+  //   .chip-cover {
+  //     opacity: 0.7;
+  //   }
+  // }
 }
-.chip-cover {
-  opacity: 0;
-  transition: 0.5s all ease;
-  width: 200px;
-  position: absolute;
-  left: 50%;
-  margin-left: -100px;
-  text-align: center;
-  top: 10%;
-  font-size: 3rem;
-  color: white;
-}
+// .chip-cover {
+//   opacity: 0;
+//   transition: 0.5s all ease;
+//   width: 200px;
+//   position: absolute;
+//   left: 50%;
+//   margin-left: -100px;
+//   text-align: center;
+//   top: 10%;
+//   font-size: 3rem;
+//   color: white;
+// }
 .chip-top {
   width: 200px;
   height: 200px;
@@ -70,22 +71,26 @@
   padding: 0px 10% 0;
 }
 .card {
-  height: 400px;
+  position: relative;
+  min-height: 400px;
   border-radius: 3px;
   text-align: start;
   overflow: hidden;
   background: #fff;
+  border: 1px solid white;
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .card-left {
   position:absolute;
+  background-size: 60px;
   width: 200px;
-  height: 400px;
+  height: 100%;
 }
 .card-right {
   position: relative;
   margin-left: 200px;
   padding: 24px;
+  overflow-x: hidden;
 }
 .card-icon {
   border-radius: 50%;
@@ -100,5 +105,32 @@
   position: absolute;
   top: 24px;
   right: 24px;
+  z-index: 5;
   cursor: pointer;
+}
+.gray {
+  background-color: gray;
+}
+.black {
+  background-color: black;
+}
+@mixin projectImage($project) {
+  background-image:url('/images/project/#{$project}.png');
+}
+.fbench {
+  @include projectImage(fbench);
+}
+.passport-nate {
+  @include projectImage(passport-nate);
+}
+
+@media only screen and (max-width: $tablet-screen) {
+  .card-left {
+    width: 100%;
+    height: 100px;
+  }
+  .card-right {
+    margin-left: 0;
+    margin-top: 100px;
+  }
 }
