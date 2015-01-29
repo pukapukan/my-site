@@ -1,5 +1,6 @@
 @import "../styles/utilities";
 @import "fonts";
+@import "loader";
 
 body {
   background: #fafafa;
@@ -8,18 +9,6 @@ body {
   &.mobile {
     height: 101vh !important;
   }
-}
-
-#loader {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  width: 400px;
-  margin-left: -200px;
-  font-size: 2rem;
-  vertical-align: middle;
-  text-align: center;
-  @include prefix(transition, opacity 0.15s ease);
 }
 .hidden {
   display: none;
