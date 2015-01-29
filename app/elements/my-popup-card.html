@@ -2,6 +2,7 @@
 <link rel="import" href="../bower_components/core-animated-pages/core-animated-pages.html">
 <link rel="import" href="my-font-awesome.html">
 
+<link rel="import" href="../bower_components/twitter-button/dist/twitter-button.html">
 <polymer-element name="my-popup-card">
   <template>
     <link href="/elements/my-popup-card.css" rel="stylesheet">
@@ -10,9 +11,9 @@
       <section id="chipSection">
         <div class="chip-container" hero-p on-tap="{{transition}}">
           <template repeat="{{items as item}}">
-            <div class="chip" hero-id="{{item.project}}" hero?="{{selectedChip === item}}">
+            <div class="chip {{item.theme}}" hero-id="{{item.project}}" hero?="{{selectedChip === item}}">
               <!-- <div class="chip-cover">Click for more</div> -->
-              <div class="chip-top {{item.theme}} {{item.css}}"  hero-id="{{item.project}}-art" hero?="{{selectedChip === item}}"></div>
+              <div class="chip-top {{item.css}}"  hero-id="{{item.project}}-art" hero?="{{selectedChip === item}}"></div>
               <div class="chip-bottom">
                 <div class="chip-header">{{item.project}}</div>
                 <div class="chip-subheader">{{item.description.short}}</div>
@@ -23,17 +24,17 @@
       </section>
 
       <section id="cardSection">
-        <div class="card" hero-id="{{selectedChip.project}}" hero>
-          <div class="card-left {{selectedChip.theme}} {{selectedChip.css}}" hero-id="{{selectedChip.project}}-art" hero></div>
+        <div class="card {{selectedChip.theme}}" hero-id="{{selectedChip.project}}" hero>
+          <div class="card-left {{selectedChip.css}}" hero-id="{{selectedChip.project}}-art" hero></div>
 
           <div class="close-button" on-tap="{{transition}}"><my-font-awesome attr="fa-close fa-3x"></my-font-awesome></div>
 
-          <div class="card-right" flex>            
-            <div layout horizontal center>
-              <div class="card-icon {{selectedChip.theme}}"></div>
+          <div class="card-right" flex>
+            <div id="cardHeader" class="card-header" layout horizontal center>
+              <div class="card-icon"></div>
               <div flex>
-                <div class="card-header">{{selectedChip.project}}</div>
-                <div class="card-subHeader">
+                <div class="card-title">{{selectedChip.project}}</div>
+                <div class="card-links">
                   <template if="{{selectedChip.url}}">
                     <a href="{{selectedChip.url}}"><my-font-awesome attr="fa-home"></my-font-awesome> Homepage</a>
                   </template>
@@ -44,14 +45,16 @@
               </div>
             </div>
             <div id="description" class="description"></div>
-            <div class="stacks">
-              <div class="subheader"><my-font-awesome attr="fa-navicon"></my-font-awesome> Tech stacks</div>
-              <ul>
-                <template repeat="{{stack in selectedChip.stacks}}">
-                  <li>{{stack}}</li>
-                </template>
-              </ul>
-            </div>
+            <template if="{{selectedChip.stacks}}">
+              <div class="stacks">
+                <div class="stack-header strong"><my-font-awesome attr="fa-navicon"></my-font-awesome> Tech stacks</div>
+                <ul>
+                  <template repeat="{{stack in selectedChip.stacks}}">
+                    <li>{{stack}}</li>
+                  </template>
+                </ul>
+              </div>
+            </template>
           </div>
         </div>
       </section>
@@ -65,7 +68,7 @@
         {
           project: 'Crawl2Tweet',
           css: 'crawl2tweet',
-          theme: 'gray',
+          theme: 'white',
           stacks: ['node', 'javascript'],
           url: 'https://www.npmjs.com/package/crawl2tweet',
           repository: {
@@ -75,19 +78,20 @@
           },
           description: {
             short: 'Web crawler that tweets',
-            long: 'Crawl2Tweet is a Web crawler + Twitterbot that tweets new articles from web sites.  It can be easily hosted on free tiers of any PaaS and MongoDB on cloud.  <br>Accounts powered by Crawl2Tweet:' +
+            long: '<div>Crawl2Tweet is a web-crawler + twitterbot that tweets new articles from web sites of your choice.  It can be easily hosted on free tiers of any PaaS and MongoDB on cloud.' +
+            '<div class="twitter"><div class="strong">Accounts powered by Crawl2Tweet:</div>' +
             '<ul>' +
-              '<li><a href="//twitter.com/invenlol">@InvenLoL</a></li>' +
-              '<li><a href="//twitter.com/androidpubbot">@AndroidPubBot</a></li>' +
-              '<li><a href="//tlrgengineering">@TLGREngineering</a></li>' +
-            '</ul>'
+              '<li><twitter-button type="follow" user="tlrgengineering" width="300" height="20"></twitter-button></li>' +
+              '<li><twitter-button type="follow" user="invenlol" width="300" height="20"></twitter-button></li>' +
+              '<li><twitter-button type="follow" user="androidpubbot" width="300" height="20"></twitter-button></li>' +
+            '</ul></div>'
           },
         },
 
         {
           project: 'passport-nate',
           css: 'passport-nate',
-          stacks: ['node', 'javascript'],
+          stacks: ['node', 'javascript', 'OAuth'],
           url: 'https://www.npmjs.com/package/passport-nate',
           repository: {
             provider: 'Github',
@@ -96,15 +100,14 @@
           },
           theme: 'black',
           description: {
-            short: 'nate/cyworld authentication strategy for passport.js',
-            long: 'Passport is authentication middleware for Node.js.  passport-nate is a Node module that implements Passport strategy for Nate (Cyworld) using OAuth.'
+            short: 'Passport.js strategy for Nate/Cyworld ',
+            long: 'Passport is authentication middleware for Node.js.  passport-nate is a Node module that implements Passport.js strategy for Nate (Cyworld) using OAuth.'
           }
         },
         {
           project: 'FBench IDE',
           css: 'fbench',
-          theme: 'gray',
-          stacks: ['java', 'function block'],
+          stacks: ['java', 'function block', 'XML'],
           url: 'http://homepages.engineering.auckland.ac.nz/~vyatkin/fbench/index.html',
           repository: {
             provider: 'SourceForge',
@@ -113,18 +116,27 @@
           },
           description: {
             short: 'Graphical interactive IDE built for IEC61499 Function Block',
-            long: '<div>FBench IDE is an open-source graphical software tool for embedded automation components and systems based on IEC61499 standard.  The project originateds in OOONEIDA Workbench pioneered by Dr. James Christensen in 2005.<br>I actively contributed to its development between 2006 and 2009 as a part under guidance of Prof. Valeriy Vyatkin.'
+            long: '<div>FBench IDE is an open-source graphical software tool for embedded automation components and systems based on IEC61499 standard.  The project originateds in OOONEIDA Workbench pioneered by Dr. James Christensen in 2005.</div>' +
+            '<div>I actively contributed to its development between 2006 and 2009 as a part under guidance of Prof. Valeriy Vyatkin.</div>'
           },
         },
         {
           project: 'Web Fundamentals',
           css: 'fundamentals',
-          language: 'translation',
+          theme: 'black',
           description: {
             short: 'Translate Google\'s Web Fundamental into Korean'
           },
-          url: 'https://github.com/google/WebFundamentals',
-          theme: 'black'
+          url: 'https://developers.google.com/web/fundamentals/',
+          repository: {
+            provider: 'Github',
+            icon: 'github',
+            url: 'https://github.com/google/WebFundamentals'
+          },
+          description: {
+            short: 'Translate \'monetization\' section of Google\'s web fundamental to Korean',
+            long: '<div>Web fundamentals is a web developer\'s bible published  and maintained by Google.  I contributed to the project by translating \'monetization\' section into Korean.</div>'
+          }
         }
       ],
       selectedChip: null,
@@ -132,10 +144,12 @@
         if (this.page === 0 && e.target.templateInstance.model.item) {
           this.selectedChip = e.target.templateInstance.model.item;
           this.$.description.innerHTML = this.selectedChip.description.long;
+          this.$.cardHeader.classList.add('animate');
 
           this.page = 1;
         } else {
           this.page = 0;
+          this.$.cardHeader.classList.remove('animate');
         }
       },
       toLowerCase: function(val) {
