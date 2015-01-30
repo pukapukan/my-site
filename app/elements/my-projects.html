@@ -3,9 +3,9 @@
 <link rel="import" href="my-font-awesome.html">
 
 <link rel="import" href="../bower_components/twitter-button/dist/twitter-button.html">
-<polymer-element name="my-popup-card">
+<polymer-element name="my-projects">
   <template>
-    <link href="/elements/my-popup-card.css" rel="stylesheet">
+    <link href="/elements/my-projects.css" rel="stylesheet">
 
     <core-animated-pages selected="{{page}}" transitions="hero-transition" on-core-animated-pages-transition-end="{{complete}}">
       <section id="chipSection">
@@ -62,7 +62,7 @@
     </core-animated-pages>
   </template>
   <script>
-    Polymer('my-popup-card', {
+    Polymer({
       page: 0,
       items: [
         {

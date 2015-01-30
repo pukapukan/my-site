@@ -1,6 +1,3 @@
-// Work by Brandon Mathis
-// Codepen: http://codepen.io/imathis/pen/ZYEWrw
-
 $w: 96px;
 $h: 112px;
 $xspace: $w/2;
@@ -9,16 +6,17 @@ $speed: 1.5s;
 
 .tetrominos {
   position: absolute;
-  top: 50%; left: 50%;
+  top: 40%;
+  left: 50%;
   transform: translate(-$h, -$w);
-  :not(.tetromino) {
-    margin-top: 175px;
-    width: 222px;
-    text-align: center;
-    font-size: 2rem;
-  }
 }
-
+.loader-text {
+  margin: 0 auto;
+  width: 250px;
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 3rem;
+}
 .tetromino {
   width: $w;
   height: $h;
@@ -40,7 +38,6 @@ $speed: 1.5s;
 .box4 {
   animation: tetromino4 $speed ease-out infinite;
 }
-
 
 @keyframes tetromino1 {
   0%, 40% {
