@@ -76,9 +76,6 @@ core-toolbar a {
 }
 
 @media only screen and (max-width: $tablet-screen) {
-  core-scroll-header-panel::shadow #headerBg {
-      background-image: url(/images/background/nz_national_park_tablet.jpg);
-  }
   core-toolbar .indent {
     margin-left: 4px !important;
   }
@@ -89,9 +86,6 @@ core-toolbar a {
 }
 
 @media only screen and (max-width: $phone-screen) {
-  core-scroll-header-panel::shadow #headerBg {
-    background-image: url(/images/background/nz_national_park_phone.jpg);
-  }
   core-toolbar .indent {
     margin-left: 4px !important;
   }
