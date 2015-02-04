@@ -6,11 +6,10 @@
   height: 100%;
 }
 .section {
-  padding: 20px 68px;
-
+  padding: 1px 68px;
   &.dark {
     background:black;
-    padding: 20px 68px 70px 68px;
+
 
     h1, h2, h3, h4 {
       color:white;
@@ -84,7 +83,8 @@ core-toolbar a {
     margin-left: 4px !important;
   }
   section {
-    padding: 20px 12px 50px 12px !important;
+    padding: 1px 20px 1px 20px !important;
+    // padding: 20px 12px 50px 12px !important;
   }
 }
 
@@ -96,6 +96,6 @@ core-toolbar a {
     margin-left: 4px !important;
   }
   section {
-    padding: 20px 20px 70px 20px !important;
+    padding: 1px 12px 1px 12px !important;
   }
 }

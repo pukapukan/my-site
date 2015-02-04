@@ -1,11 +1,11 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/core-scroll-header-panel/core-scroll-header-panel.html">
 <link rel="import" href="../bower_components/core-toolbar/core-toolbar.html">
-<link rel="import" href="../bower_components/paper-ripple/paper-ripple.html">
-<link rel="import" href="my-self.html">
 <link rel="import" href="my-font-awesome.html">
+<link rel="import" href="my-self.html">
 <link rel="import" href="my-projects.html">
 <link rel="import" href="my-timeline.html">
+<link rel="import" href="my-academics.html">
 
 <polymer-element name="my-app">
   <template>
@@ -15,6 +15,7 @@
         font-family: "Dosis", arial, tahoma, verdana;
         font-weight: 500;
         font-size: 3.5rem;
+        margin: 1em 0;
       }
       :host /deep/ section[page] {
         min-height: 100vh;
@@ -35,7 +36,7 @@
         <h1 id="title" class="bottom title indent">hyunj<span>o_O</span>n</h1>
       </core-toolbar>
 
-      <section class="about section">
+      <section page class="about section">
         <my-self></my-self>
       </section>
 
@@ -47,13 +48,14 @@
         <my-projects></my-projects>
       </section>
 
-      <section class="career section">
+      <section page class="career section">
         <h2>Career journey</h2>
         <my-timeline></my-timeline>
       </section>
 
-      <section class="academic section dark">
+      <section page class="academic section dark">
         <h2>Academic achievements</h2>
+        <my-academics onScroll="{{onScroll}}"></my-academics>
       </section>
     </core-scroll-header-panel>
   </template>

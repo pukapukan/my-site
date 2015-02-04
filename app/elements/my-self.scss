@@ -13,6 +13,16 @@
     @include prefix(transform, translateY(0px));
   }
 }
+
+:host {
+  display: block;
+  &:after {
+    content: ' ';
+    display: block;
+    height: 100px;
+  }
+}
+
 .profile {
   @extend %center;
 
@@ -59,11 +69,6 @@
   max-width: 50vw;
   @include prefix(animation, myself 2s ease 1);
 
-  &:after {
-    content: ' ';
-    display: block;
-    height: 100px;
-  }
   & > b {
     font-weight: 400;
     font-family: Lobster;

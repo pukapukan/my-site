@@ -1,0 +1,34 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="my-font-awesome.html">
+
+<polymer-element name="my-academics" attributes="onScroll">
+  <template>
+    <style>
+      .page {
+        height: 100vh;
+      }
+    </style>
+    <div class="page" id="page1">
+      Section 1
+    </div>
+    <div class="page" id="page2">
+      Section 2
+    </div>
+  </template>
+  <script>
+  var pages = [];
+  Polymer({
+    ready: function () {
+      var query = this.shadowRoot.querySelectorAll('div');
+      pages = pages.concat(query.array());
+    },
+    onScroll: function (event, detail, sender) {
+      $top = detail.target.scrollTop;
+      pages.forEach(function(page, index) {
+        console.log(page, index)
+      });
+      console.log('@' + $top, ' page1:');
+    }
+  });
+  </script>
+</polymer-element>
