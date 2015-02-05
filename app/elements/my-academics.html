@@ -7,27 +7,48 @@
       .page {
         height: 100vh;
       }
+      .page > div {
+        padding-top: 150px;
+      }
     </style>
     <div class="page" id="page1">
-      Section 1
+      <div>
+        Section 1
+      </div>
     </div>
     <div class="page" id="page2">
-      Section 2
+      <div>
+        Section 1
+      </div>
     </div>
   </template>
   <script>
   var pages = [];
+  var $scroller, $academic, $academicHeader;
+  var headerGap = 56;
   Polymer({
     ready: function () {
       var query = this.shadowRoot.querySelectorAll('div');
       pages = pages.concat(query.array());
+
+      var root = this.parentElement.parentElement;
+      $academic = this.parentElement;
+      $academicHeader = this.parentElement.querySelector('#academicHeader');
     },
     onScroll: function (event, detail, sender) {
-      $top = detail.target.scrollTop;
-      pages.forEach(function(page, index) {
-        console.log(page, index)
-      });
-      console.log('@' + $top, ' page1:');
+      $scroller = $scroller || detail.target;
+
+      var headerStyle = $academicHeader.style;
+      var currentTop = $scroller.scrollTop;
+      var sectionTop = $academic.offsetTop;
+      var pageHeight = pages[0].scrollHeight;
+
+      if (currentTop < sectionTop) {
+        headerStyle.top = (sectionTop + 56) + 'px';
+      } else if (currentTop >= sectionTop &&
+          currentTop <= (sectionTop + pageHeight)) {
+        headerStyle.top = ($scroller.scrollTop + 56) + 'px';
+      }
     }
   });
   </script>
