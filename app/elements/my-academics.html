@@ -3,22 +3,35 @@
 
 <polymer-element name="my-academics" attributes="onScroll">
   <template>
-    <style>
-      .page {
-        height: 100vh;
-      }
-      .page > div {
-        padding-top: 150px;
-      }
-    </style>
+    <link href="/elements/my-academics.css" rel="stylesheet">
     <div class="page" id="page1">
-      <div>
+      <div class="content">
         Section 1
+
+        <div class="sticky-left gray">
+          <span class="image-placeholder">1st Image</span>
+        </div>
+        <div class="right">
+          <div>University of Auckland</div>
+          <div>Master of Engineering (Hons.)</div>
+          <div>Software engineering in industrial automation field of IEC61499</div>
+          <div>2008~2009</div>
+        </div>
       </div>
     </div>
     <div class="page" id="page2">
       <div>
         Section 1
+
+        <div class="sticky-left">
+          <span class="image-placeholder red">2nd Image</span>
+        </div>
+        <div class="right">
+          <div>University of Auckland</div>
+          <div>Bachelor of Engineering</div>
+          <div>Major in Software Engineering</div>
+          <div>2004~2007</div>
+        </div>
       </div>
     </div>
   </template>
@@ -43,12 +56,15 @@
       var sectionTop = $academic.offsetTop;
       var pageHeight = pages[0].scrollHeight;
 
+      // set sticky header
       if (currentTop < sectionTop) {
         headerStyle.top = (sectionTop + 56) + 'px';
       } else if (currentTop >= sectionTop &&
           currentTop <= (sectionTop + pageHeight)) {
         headerStyle.top = ($scroller.scrollTop + 56) + 'px';
       }
+
+      // add card behaviour to academic record
     }
   });
   </script>

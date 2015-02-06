@@ -1,0 +1,19 @@
+.page {
+  height: 100vh;
+}
+.page > .content {
+  padding-top: 150px;
+  color: white;
+  transition: 0.3s ease transform;
+  transform: translateY(100px);
+}
+.sticky-left {
+  width: 200px;
+  height: 300px;
+}
+.gray {
+  background: gray;
+}
+.right {
+  font-weight: 300;
+}
