@@ -7,9 +7,9 @@
 }
 .section {
   padding: 1px 68px;
+  position: relative;
   &.dark {
     background:black;
-
 
     h1, h2, h3, h4 {
       color:white;
@@ -38,6 +38,9 @@ core-scroll-header-panel::shadow #headerBg {
 core-scroll-header-panel::shadow #condensedHeaderBg {
   background-color: rgba(0, 0, 0, 0.7);
 }
+core-scroll-header-panel::shadow #headerContainer {
+  z-index: $header-z-index;
+}
 core-scroll-header-panel::shadow #mainContainer {
   // padding: 0px 68px;
   padding-top: 0px !important;
@@ -46,7 +49,7 @@ core-scroll-header-panel::shadow #mainContainer {
   font-size: 3rem;
   vertical-align: middle;
   will-change: transform;
-  @include prefix(transform-origin, left);
+  transform-origin: left;
 }
 .title > span {
   font-weight: bolder;
@@ -73,6 +76,18 @@ core-toolbar a {
     transform: translate(0px, 0px);
     opacity: 1;
   }
+}
+#academicHeader {
+  margin:0;
+  position:absolute;
+}
+
+.academic {
+  z-index: 10;
+}
+.footer {
+  z-index: 11;
+  background: white;
 }
 
 @media only screen and (max-width: $tablet-screen) {

@@ -4,13 +4,13 @@
 @include keyframes(profile) {
   from {
     opacity: 0.1;
-    @include prefix(transform, translateY(-30px));
-    @include prefix(filter, blur(5px));
+    transform: translateY(-30px);
+    filter: blur(5px);
   }
   to {
     opacity: 1;
-    @include prefix(filter, blur(0px));
-    @include prefix(transform, translateY(0px));
+    filter: blur(0px);
+    transform: translateY(0px);
   }
 }
 
@@ -34,7 +34,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   box-shadow: 4px 4px rgba(174, 174, 174, 0.65);
-  @include prefix(animation, profile 2s ease-out 1);
+  animation: profile 2s ease-out 1;
 
   .border {
     position:relative;
@@ -50,11 +50,11 @@
 @include keyframes(myself) {
   from {
     opacity: 0.1;
-    @include prefix(filter, blur(10px));
+    filter: blur(10px);
   }
   to {
     opacity: 1;
-    @include prefix(filter, none);
+    filter: none;
   }
 }
 .myself {
@@ -67,7 +67,7 @@
   line-height: 2em;
   max-width: 400px;
   max-width: 50vw;
-  @include prefix(animation, myself 2s ease 1);
+  animation: myself 2s ease 1;
 
   & > b {
     font-weight: 400;

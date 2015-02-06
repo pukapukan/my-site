@@ -5,27 +5,9 @@
   <template>
     <link href="/elements/my-academics.css" rel="stylesheet">
     <div class="page" id="page1">
-      <div class="content">
+      <div class="floater">
         Section 1
-
-        <div class="sticky-left gray">
-          <span class="image-placeholder">1st Image</span>
-        </div>
-        <div class="right">
-          <div>University of Auckland</div>
-          <div>Master of Engineering (Hons.)</div>
-          <div>Software engineering in industrial automation field of IEC61499</div>
-          <div>2008~2009</div>
-        </div>
-      </div>
-    </div>
-    <div class="page" id="page2">
-      <div>
-        Section 1
-
-        <div class="sticky-left">
-          <span class="image-placeholder red">2nd Image</span>
-        </div>
+        <div class="image-placeholder red">1st Image</div>
         <div class="right">
           <div>University of Auckland</div>
           <div>Bachelor of Engineering</div>
@@ -33,16 +15,70 @@
           <div>2004~2007</div>
         </div>
       </div>
+
+      <div class="rolling-text">
+        Some random text that scrolls
+      </div>
+    </div>
+    <div class="page" id="page2">
+      <div class="floater">
+        Section 2
+        <div class="image-placeholder red">2nd Image</div>
+        <div class="right">
+          <div>University of Auckland</div>
+          <div>Master of Engineering (Hons.)</div>
+          <div>Software engineering in industrial automation field of IEC61499</div>
+          <div class="text">2008~2009</div>
+        </div>
+      </div>
+
+      <div class="rolling-text">
+        Some random text that scrolls
+      </div>
+    </div>
+
+    <div class="page" id="page3">
+      <div class="floater">
+        Section 3
+        <div class="image-placeholder red">2nd Image</div>
+        <div class="right">
+          <div>University of Auckland</div>
+          <div>Master of Engineering (Hons.)</div>
+          <div>Software engineering in industrial automation field of IEC61499</div>
+          <div class="text">2008~2009</div>
+        </div>
+      </div>
+
+      <div class="rolling-text">
+        Some random text that scrolls
+      </div>
+    </div>
+
+    <div class="page" id="page4">
+      <div class="floater">
+        Section 4
+        <div class="image-placeholder red">2nd Image</div>
+        <div class="right">
+          <div>University of Auckland</div>
+          <div>Master of Engineering (Hons.)</div>
+          <div>Software engineering in industrial automation field of IEC61499</div>
+          <div class="text">2008~2009</div>
+        </div>
+      </div>
+
+      <div class="rolling-text">
+        Some random text that scrolls
+      </div>
     </div>
   </template>
   <script>
-  var pages = [];
+  var pages;
   var $scroller, $academic, $academicHeader;
   var headerGap = 56;
   Polymer({
     ready: function () {
-      var query = this.shadowRoot.querySelectorAll('div');
-      pages = pages.concat(query.array());
+      var query = this.shadowRoot.querySelectorAll('.page');
+      pages = query.array();
 
       var root = this.parentElement.parentElement;
       $academic = this.parentElement;
@@ -54,17 +90,42 @@
       var headerStyle = $academicHeader.style;
       var currentTop = $scroller.scrollTop;
       var sectionTop = $academic.offsetTop;
-      var pageHeight = pages[0].scrollHeight;
+      var lastSectionHeight = pages[pages.length - 1].scrollHeight;
+      var headerGap = 56;
 
       // set sticky header
       if (currentTop < sectionTop) {
-        headerStyle.top = (sectionTop + 56) + 'px';
-      } else if (currentTop >= sectionTop &&
-          currentTop <= (sectionTop + pageHeight)) {
-        headerStyle.top = ($scroller.scrollTop + 56) + 'px';
+        headerStyle.top = headerGap + 'px';
+      } else if (currentTop >= sectionTop /* && currentTop <= (sectionTop + lastSectionHeight) */) {
+        headerStyle.top = (currentTop - sectionTop + headerGap) + 'px';
       }
 
       // add card behaviour to academic record
+      var floaterStyle;
+      var pageTop;
+      var breakNow = false;
+      pages.forEach(function(page, index) {
+        if (currentTop - sectionTop >= page.offsetTop - screen.height + 200 /* buffer */) {
+          if (!page.classList.contains('show')) {
+            page.classList.add('show');
+          }
+
+          floaterStyle = page.querySelector('.floater').style
+
+          if (index === 0 && currentTop < sectionTop) {
+            floaterStyle.top = 'initial';
+            floaterStyle['margin-top'] = 250 + 'px';
+          }
+          //  else if (currentTop >= sectionTop + page.offsetTop) {
+          else {
+            floaterStyle.top = currentTop - sectionTop + 250 + 'px';
+            floaterStyle['margin-top'] = 0;
+          }
+          if (index) {
+            floaterStyle.opacity = Math.min((currentTop - sectionTop - page.offsetTop) / page.scrollHeight, 1);
+          }
+        }
+      });
     }
   });
   </script>

@@ -1,13 +1,32 @@
 .page {
-  height: 100vh;
-}
-.page > .content {
-  padding-top: 150px;
   color: white;
-  transition: 0.3s ease transform;
-  transform: translateY(100px);
+  min-height: 100vh;
+  &.show {
+    .floater {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+  .floater {
+    margin-top: 250px;
+  }
 }
-.sticky-left {
+
+.floater {
+  background: gray;
+  position: absolute;
+  padding: 10px;
+  color: white;
+  transition: 1s ease all;
+  transition-property: transform,opacity;
+  transform: translateY(100px);
+  border: white 2px dashed;
+  opacity: 0;
+  &:nth-of-type(even) {
+    background: green;
+  }
+}
+.image-placeholder {
   width: 200px;
   height: 300px;
 }
@@ -16,4 +35,7 @@
 }
 .right {
   font-weight: 300;
+}
+.rolling-text {
+  padding: 500px 0 0 500px;
 }
