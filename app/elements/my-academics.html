@@ -4,20 +4,18 @@
 <polymer-element name="my-academics" attributes="onScroll">
   <template>
     <link href="/elements/my-academics.css" rel="stylesheet">
-    <div class="page" id="page1">
+    <div class="page" id="master">
       <div class="floater">
-        Section 1
-        <div class="image-placeholder red">1st Image</div>
-        <div class="right">
-          <div>University of Auckland</div>
-          <div>Bachelor of Engineering</div>
-          <div>Major in Software Engineering</div>
-          <div>2004~2007</div>
-        </div>
+        <img class="logo" src="/images/academic/uoa.gif" />
+        <div class="title">Master of Engineering</div>
+        <div class="specialisation">Software Engineering</div>
+        <div class="period">2008 ~ 2009</div>
+        <div></div>
       </div>
 
       <div class="rolling-text">
-        Some random text that scrolls
+        <div>Research topic focused on applying software engineering principles to IEC61499 Function Block - an open standard for distributed control and automation targetted for industrial automation.</div>
+        <div></div>
       </div>
     </div>
     <div class="page" id="page2">
@@ -33,7 +31,7 @@
       </div>
 
       <div class="rolling-text">
-        Some random text that scrolls
+        Some random text that scrolls for page 2
       </div>
     </div>
 
@@ -50,14 +48,14 @@
       </div>
 
       <div class="rolling-text">
-        Some random text that scrolls
+        Some random text that scrolls for page 3
       </div>
     </div>
 
     <div class="page" id="page4">
       <div class="floater">
         Section 4
-        <div class="image-placeholder red">2nd Image</div>
+        <div class="image-placeholder">2nd Image</div>
         <div class="right">
           <div>University of Auckland</div>
           <div>Master of Engineering (Hons.)</div>
@@ -67,7 +65,7 @@
       </div>
 
       <div class="rolling-text">
-        Some random text that scrolls
+        Some random text that scrolls for page 4
       </div>
     </div>
   </template>
@@ -96,36 +94,47 @@
       // set sticky header
       if (currentTop < sectionTop) {
         headerStyle.top = headerGap + 'px';
-      } else if (currentTop >= sectionTop /* && currentTop <= (sectionTop + lastSectionHeight) */) {
+      } else if (currentTop >= sectionTop && currentTop <= (sectionTop + $academic.scrollHeight - lastSectionHeight) /* && currentTop <= (sectionTop + lastSectionHeight) */) {
+        // if (!pages[0].classList.contains('show')) {
+        //   pages[0].classList.add('show');
+        // }
+
         headerStyle.top = (currentTop - sectionTop + headerGap) + 'px';
       }
 
       // add card behaviour to academic record
-      var floaterStyle;
+      var floater, floaterStyle, opacity;
       var pageTop;
       var breakNow = false;
       pages.forEach(function(page, index) {
-        if (currentTop - sectionTop >= page.offsetTop - screen.height + 200 /* buffer */) {
-          if (!page.classList.contains('show')) {
-            page.classList.add('show');
+        if (!index && currentTop >= sectionTop + page.offsetTop - screen.height) {
+          if (!pages[0].classList.contains('show')) {
+            pages[0].classList.add('show');
           }
+        }
 
-          floaterStyle = page.querySelector('.floater').style
+        if (currentTop >= sectionTop + page.offsetTop - page.scrollHeight) {
+          floater = page.querySelector('.floater');
+          floaterStyle = floater.style;
 
-          if (index === 0 && currentTop < sectionTop) {
-            floaterStyle.top = 'initial';
-            floaterStyle['margin-top'] = 250 + 'px';
-          }
-          //  else if (currentTop >= sectionTop + page.offsetTop) {
-          else {
-            floaterStyle.top = currentTop - sectionTop + 250 + 'px';
-            floaterStyle['margin-top'] = 0;
-          }
           if (index) {
-            floaterStyle.opacity = Math.min((currentTop - sectionTop - page.offsetTop) / page.scrollHeight, 1);
+            if (currentTop - sectionTop - page.offsetTop + page.scrollHeight/2 <=0) {
+              floaterStyle.opacity = 0;
+            } else {
+              if (!page.classList.contains('show')) {
+                page.classList.add('show');
+              }
+              opacity = (currentTop - sectionTop - page.offsetTop + page.scrollHeight) / page.scrollHeight;
+              floaterStyle.opacity = opacity;
+            }
+          }
+
+          if(currentTop <= sectionTop + $academic.scrollHeight - lastSectionHeight) {
+            floaterStyle.top = Math.max(0, currentTop - sectionTop) + 250 + (index * 20) + 'px';
           }
         }
       });
+
     }
   });
   </script>

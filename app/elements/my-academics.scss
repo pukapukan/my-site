@@ -7,23 +7,32 @@
       transform: translateY(0px);
     }
   }
-  .floater {
-    margin-top: 250px;
+
+  &:nth-of-type(even) {
+    .floater {
+      background: green;
+    }
   }
 }
 
 .floater {
-  background: gray;
+  background: white;
   position: absolute;
-  padding: 10px;
-  color: white;
+  padding: 2rem 1rem;
+  color: black;
   transition: 1s ease all;
   transition-property: transform,opacity;
   transform: translateY(100px);
   border: white 2px dashed;
+  max-width: 450px;
+  min-width:450px;
   opacity: 0;
-  &:nth-of-type(even) {
-    background: green;
+  top: 250px;
+
+  .logo {
+    max-width: 400px;
+    display: block;
+    margin: 0 auto;
   }
 }
 .image-placeholder {
@@ -37,5 +46,5 @@
   font-weight: 300;
 }
 .rolling-text {
-  padding: 500px 0 0 500px;
+  padding: 40vh 0 0 550px;
 }
