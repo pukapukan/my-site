@@ -75,22 +75,17 @@
     </div>
   </template>
   <script>
-  // DOM elements
-  var pages, pagesWrapper, covers;
-  var $academic, $academicHeader;
-
-  // constants
-  var headerGap = 56;
-  var floaterTopMargin = 200;
+  // elements
+  var pages, pagesWrapper, cover, covers, section, sectionHeader;
 
   // variables
   var lastSectionHeight, lastSectionTop, sectionTop, sectionHeight;
 
   // calculate variables when page load/resizes
   var recalculate = function() {
-    sectionTop = $academic.offsetTop;
+    sectionTop = section.offsetTop;
     lastSectionHeight = pages[pages.length - 1].scrollHeight;
-    lastSectionTop = sectionTop + $academic.scrollHeight - lastSectionHeight;
+    lastSectionTop = sectionTop + section.scrollHeight - lastSectionHeight;
     sectionHeight = pagesWrapper.scrollHeight - lastSectionHeight;
   };
 
@@ -99,61 +94,54 @@
       pages = this.shadowRoot.querySelectorAll('.page').array();
       pagesWrapper = this.shadowRoot.querySelector('.pages');
 
-      covers = this.shadowRoot.querySelectorAll('.coverpage');
+      cover = this.shadowRoot.querySelector('.cover');
+      covers = cover.querySelectorAll('.coverpage');
 
-      $academic = this.parentElement;
-      $academicHeader = this.parentElement.querySelector('#academicHeader');
+      section = this.parentElement;
+      sectionHeader = this.parentElement.querySelector('#academicHeader');
 
       window.onresize = recalculate;
     },
     onScroll: function (event, detail, sender) {
+      // if not initialized
       if (!lastSectionHeight) {
         recalculate();
       }
-      sectionTop = $academic.offsetTop;
+
+      sectionTop = section.offsetTop;
       var currentTop = detail.target.scrollTop;
       var offsetToParent = currentTop - sectionTop;
 
       // // set sticky header
       if(currentTop < sectionTop) {
-        $academicHeader.classList.remove('sticky');
-        $academicHeader.classList.remove('hide');
-        // $academicHeader.style.top = (offsetToParent + headerGap) + 'px';
+        sectionHeader.classList.remove('sticky', 'hide');
+        cover.classList.remove('sticky');
       } else if (currentTop >= sectionTop && currentTop <= sectionTop + sectionHeight) {
-        $academicHeader.classList.add('sticky');
-        $academicHeader.classList.add('hide');
+        cover.classList.add('sticky');
+        sectionHeader.classList.add('sticky', 'hide');
+        covers[covers.length - 1].classList.remove('blur');
       } else {
-        $academicHeader.classList.add('hide');
+        sectionHeader.classList.add('hide');
+        covers[covers.length - 1].classList.add('blur');
       }
 
       // add card behaviour to academic record
       pages.forEach(function(page, index) {
-        if (!index && !page.classList.contains('show') && currentTop >= sectionTop + page.offsetTop - screen.height) {
-          page.classList.add('show');
-        }
-
         if (currentTop >= sectionTop) {
           page.classList.add('sticky');
         } else {
           page.classList.remove('sticky');
         }
 
-        if (currentTop >= sectionTop + page.offsetTop - page.scrollHeight) {
-          // floaterStyle = page.querySelector('.floater').style;
+        if (offsetToParent >= page.offsetTop - page.scrollHeight) {
 
-          if (index && offsetToParent - page.offsetTop + page.scrollHeight/2 <= 0) {
-            // page.querySelector('.floater').style.opacity = 0;
+          if (offsetToParent <= page.offsetTop - page.scrollHeight/2 ||
+              offsetToParent >= page.offsetTop + page.scrollHeight/2) {
             page.classList.remove('show');
             covers[index].classList.remove('show');
           } else {
             page.classList.add('show');
             covers[index].classList.add('show');
-            // page.querySelector('.floater').style.opacity = (offsetToParent - page.offsetTop + page.scrollHeight) / page.scrollHeight;
-          }
-
-
-          if(currentTop <= sectionTop + sectionHeight) {
-            // floaterStyle.top = Math.max(0, Math.min(currentTop, sectionTop + sectionHeight) - sectionTop) + floaterTopMargin + (index * 75) + 'px';
           }
         }
       });
