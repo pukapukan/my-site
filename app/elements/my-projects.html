@@ -36,10 +36,10 @@
                 <div class="card-title">{{selectedChip.project}}</div>
                 <div class="card-links">
                   <template if="{{selectedChip.url}}">
-                    <a href="{{selectedChip.url}}"><my-font-awesome attr="fa-home"></my-font-awesome> Homepage</a>
+                    <a href="{{selectedChip.url}}" target="_blank"><my-font-awesome attr="fa-home"></my-font-awesome> Homepage</a>
                   </template>
                   <template if="{{selectedChip.repository}}">
-                    <a href="{{selectedChip.repository.url}}"><my-font-awesome attr="fa-{{selectedChip.repository.icon}}"></my-font-awesome> {{selectedChip.repository.provider}}</a>
+                    <a href="{{selectedChip.repository.url}}" target="_blank"><my-font-awesome attr="fa-{{selectedChip.repository.icon}}"></my-font-awesome> {{selectedChip.repository.provider}}</a>
                   </template>
                 </div>
               </div>

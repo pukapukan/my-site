@@ -16,7 +16,7 @@
             <div>{{item.to}}</div>
           </div>
           <div class="timeline-content">
-            <a class="company-logo" href="{{item.company.url}}"><img src="/images/work/{{item.company.name}}.png" alt="{{item.company.name}}" /></a>
+            <a class="company-logo" href="{{item.company.url}}" target="_blank"><img src="/images/work/{{item.company.name}}.png" alt="{{item.company.name}}" /></a>
 
             <div class="role">
               {{item.role}}
@@ -67,11 +67,10 @@
               <div class="presentations">
                 <div class="subheader"><my-font-awesome attr="fa-slideshare"></my-font-awesome> Presentations</div>
                 <ul>
-                  <template repeat="{{item.presentations}}"><li><a href="{{url}}">{{text}}</a></li></template>
+                  <template repeat="{{item.presentations}}"><li><a href="{{url}}" target="_blank">{{text}}</a></li></template>
                 </ul>
               </div>
             </template>
-            <!-- <a href="#" class="btn">more</a> -->
           </div>
         </div>
       </template>
