@@ -1,3 +1,8 @@
+@import "../styles/utilities";
+
+.pages {
+  position: relative;
+}
 .page {
   color: white;
   min-height: 100vh;
@@ -7,6 +12,12 @@
       transform: translateY(0px);
     }
   }
+  &.sticky {
+    .floater{
+      position: fixed;
+      top: 183px;
+    }
+  }
 
   &:nth-of-type(even) {
     .floater {
@@ -14,7 +25,6 @@
     }
   }
 }
-
 .floater {
   background: white;
   position: absolute;
@@ -24,27 +34,58 @@
   transition-property: transform,opacity;
   transform: translateY(100px);
   border: white 2px dashed;
-  max-width: 450px;
-  min-width:450px;
+  max-width: 50vw;
+  min-width:50vw;
   opacity: 0;
-  top: 250px;
+  // top: 250px;
 
   .logo {
     max-width: 400px;
     display: block;
-    margin: 0 auto;
+    margin: 2rem auto;
+  }
+  .title {
+    font-size: 2.5rem;
+  }
+  .period {
+    position: absolute;
+    right: 1rem;
+    top: 2.5rem;
   }
 }
-.image-placeholder {
-  width: 200px;
-  height: 300px;
+.cover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+
+  &>*{
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 1s ease;
+
+    &.show {
+      opacity: 1;
+    }
+  }
+
+  .page1 {
+    background-image: url(/images/background/academic0.jpg);
+  }
+  .page2 {
+    background-image: url(/images/background/academic1.jpg);
+  }
+  .page3 {
+    background-image: url(/images/background/academic2.jpg);
+  }
+  .page4 {
+    background-image: url(/images/background/academic3.jpg);
+  }
 }
-.gray {
-  background: gray;
-}
-.right {
-  font-weight: 300;
-}
-.rolling-text {
-  padding: 40vh 0 0 550px;
-}
+// .rolling-text {
+//   padding: 40vh 0 0 55vw;
+// }

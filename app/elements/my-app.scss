@@ -44,6 +44,11 @@ core-scroll-header-panel::shadow #headerContainer {
 core-scroll-header-panel::shadow #mainContainer {
   // padding: 0px 68px;
   padding-top: 0px !important;
+
+  &.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+  }
 }
 .title {
   font-size: 3rem;
@@ -77,11 +82,19 @@ core-toolbar a {
     opacity: 1;
   }
 }
-#academicHeader {
-  margin:0;
-  position:absolute;
+.section-header {
+  transition: all 1.5s ease;
+  transition-property: transform, opacity;
+  top: 0px;
+  opacity: 1;
+  &.sticky {
+    position: fixed;
+  }
+  &.hide {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
 }
-
 .academic {
   z-index: 10;
 }
