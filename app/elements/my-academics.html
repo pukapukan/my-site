@@ -8,10 +8,10 @@
 
       <div class="page">
         <div class="floater">
-          <div class="title">Master of Engineering</div>
-          <div class="period">2008 ~ 2009</div>
           <img class="logo" src="/images/academic/uoa.gif" />
-          <div class="specialisation">Software Engineering</div>
+          <div class="title">Master of Engineering (Hons.)</div>
+          <div class="period">2008 ~ 2009</div>
+          <div class="description">Software Engineering</div>
         </div>
       </div>
 
@@ -51,7 +51,7 @@
           </div>
         </div>
       </div>
-      
+
     </div>
 
     <div class="cover">
@@ -90,8 +90,8 @@
       window.onresize = recalculate;
     },
     onScroll: function (event, detail, sender) {
-      // if not initialized
       if (!lastSectionHeight) {
+        // if not initialized
         recalculate();
       }
 
@@ -119,17 +119,13 @@
         } else {
           page.classList.remove('sticky');
         }
-
-        if (offsetToParent >= page.offsetTop - page.scrollHeight) {
-
-          if (offsetToParent <= page.offsetTop - page.scrollHeight/2 ||
-              offsetToParent >= page.offsetTop + page.scrollHeight/2) {
-            page.classList.remove('show');
-            covers[index].classList.remove('show');
-          } else {
-            page.classList.add('show');
-            covers[index].classList.add('show');
-          }
+        if (offsetToParent >= page.offsetTop - page.scrollHeight/2 &&
+            offsetToParent <= page.offsetTop + page.scrollHeight/2) {
+          page.classList.add('show');
+          covers[index].classList.add('show');
+        } else {
+          page.classList.remove('show');
+          covers[index].classList.remove('show');
         }
       });
 
