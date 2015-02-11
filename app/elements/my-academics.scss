@@ -27,10 +27,11 @@
   max-width: 50vw;
   min-width:50vw;
   min-height: 15rem;
-  box-shadow: 0 14px 12px 0 rgba(0, 0, 0, 0.17);
   opacity: 0;
   background: white;
   color: black;
+  border-radius: 5px;
+  box-shadow: 0 14px 12px 0 rgba(0, 0, 0, 0.17);
   transition: 1s ease all;
   transition-property: opacity, transform;
 
