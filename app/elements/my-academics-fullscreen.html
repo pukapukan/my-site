@@ -1,0 +1,134 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="my-font-awesome.html">
+
+<polymer-element name="my-academics-fullscreen" attributes="onScroll">
+  <template>
+    <link href="/elements/my-academics-fullscreen.css" rel="stylesheet">
+    <div class="pages">
+
+      <div class="page">
+        <div class="floater">
+          <img class="logo" src="/images/academic/uoa.gif" />
+          <div class="title">Master of Engineering (Hons.)</div>
+          <div class="period">2008 ~ 2009</div>
+          <div class="description">Software Engineering</div>
+        </div>
+      </div>
+
+      <div class="page">
+        <div class="floater">
+          Section 2
+          <div class="image-placeholder red">2nd Image</div>
+          <div>University of Auckland</div>
+          <div>Master of Engineering (Hons.)</div>
+          <div>Software engineering in industrial automation field of IEC61499</div>
+          <div class="text">2008~2009</div>
+        </div>
+      </div>
+
+      <div class="page">
+        <div class="floater">
+          Section 3
+          <div class="image-placeholder red">2nd Image</div>
+          <div class="right">
+            <div>University of Auckland</div>
+            <div>Master of Engineering (Hons.)</div>
+            <div>Software engineering in industrial automation field of IEC61499</div>
+            <div class="text">2008~2009</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page">
+        <div class="floater">
+          Section 4
+          <div class="image-placeholder">2nd Image</div>
+          <div class="right">
+            <div>University of Auckland</div>
+            <div>Master of Engineering (Hons.)</div>
+            <div>Software engineering in industrial automation field of IEC61499</div>
+            <div class="text">2008~2009</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cover">
+      <div class="coverpage page1"></div>
+      <div class="coverpage page2"></div>
+      <div class="coverpage page3"></div>
+      <div class="coverpage page4"></div>
+    </div>
+  </template>
+  <script>
+  // elements
+  var pages, pagesWrapper, cover, covers, section, sectionHeader;
+
+  // variables
+  var lastSectionHeight, lastSectionTop, sectionTop, sectionHeight;
+
+  // calculate variables when page load/resizes
+  var recalculate = function() {
+    sectionTop = section.offsetTop;
+    lastSectionHeight = pages[pages.length - 1].scrollHeight;
+    lastSectionTop = sectionTop + section.scrollHeight - lastSectionHeight;
+    sectionHeight = pagesWrapper.scrollHeight - lastSectionHeight;
+  };
+
+  Polymer({
+    domReady: function () {
+      pages = this.shadowRoot.querySelectorAll('.page').array();
+      pagesWrapper = this.shadowRoot.querySelector('.pages');
+
+      cover = this.shadowRoot.querySelector('.cover');
+      covers = cover.querySelectorAll('.coverpage');
+
+      section = this.parentElement;
+      sectionHeader = this.parentElement.querySelector('#academicHeader');
+
+      window.onresize = recalculate;
+    },
+    onScroll: function (event, detail, sender) {
+      if (!lastSectionHeight) {
+        // if not initialized
+        recalculate();
+      }
+
+      sectionTop = section.offsetTop;
+      var currentTop = detail.target.scrollTop;
+      var offsetToParent = currentTop - sectionTop;
+
+      // // set sticky header
+      if(currentTop < sectionTop) {
+        sectionHeader.classList.remove('sticky', 'hide');
+        cover.classList.remove('sticky');
+      } else if (currentTop >= sectionTop && currentTop <= sectionTop + sectionHeight) {
+        cover.classList.add('sticky');
+        sectionHeader.classList.add('sticky', 'hide');
+        covers[covers.length - 1].classList.remove('blur');
+      } else {
+        sectionHeader.classList.add('hide');
+        covers[covers.length - 1].classList.add('blur');
+      }
+
+      // add card behaviour to academic record
+      pages.forEach(function(page, index) {
+        if (currentTop >= sectionTop) {
+          page.classList.add('sticky');
+        } else {
+          page.classList.remove('sticky');
+        }
+        if (offsetToParent >= page.offsetTop - page.scrollHeight/2) {
+          page.classList.add('show');
+          covers[index].classList.add('show');
+        } else {
+          page.classList.remove('show');
+          covers[index].classList.remove('show');
+        }
+      });
+
+    }
+  });
+  </script>
+</polymer-element>

@@ -1,106 +1,106 @@
-@import "../styles/utilities";
-
-.pages {
+.books {
+  list-style: none;
   position: relative;
-  margin: 0 -68px;
-  padding: 0 68px;
-}
-.page {
-  color: white;
-  min-height: 100vh;
-  &.show {
-    .floater {
-      opacity: 1;
-      transform: translateY(0px);
-    }
-  }
-  &.sticky {
-    .floater{
-      position: fixed;
-      top: 183px;
+
+  li {
+    position: relative;
+    width: 300px;
+    float: left;
+    z-index: 1;
+    margin: 0px 50px 40px 0;
+    -webkit-perspective: 1800px;
+    -moz-perspective: 1800px;
+    perspective: 1800px;
+    transition: transform .5s;
+
+    &:hover {
+      transform: rotate3d(0,1,0,35deg);
     }
   }
 }
-.floater {
-  position: absolute;
-  padding: 2rem 1rem;
-  max-width: 50vw;
-  min-width:50vw;
-  min-height: 15rem;
-  opacity: 0;
-  background: white;
-  color: black;
-  border-radius: 5px;
-  box-shadow: 0 14px 12px 0 rgba(0, 0, 0, 0.17);
-  transition: 1s ease all;
-  transition-property: opacity, transform;
 
-  & > :not(.logo) {
-    margin-left: 28rem;
-  }
-
-  .logo {
-    max-width: 27rem;
+.book {
+  & > div {
+    display: block;
     position: absolute;
+    background-color: #ff924a;
+    transition: transform .5s;
   }
-  .title {
+
+  h2 {
+    color: #fff;
+    font-size: 15px;
+    line-height: 40px;
+    padding-right: 10px;
     text-align: right;
-    font-size: 2.5rem;
-    font-family: Lobster;
-  }
-  .period {
-    font-weight: bolder;
-    line-height: 2.5rem;
-    text-align: right;
-  }
-  .description {
-
-  }
-}
-.cover {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-
-  &.sticky {
-    position: fixed;
   }
 
-  .coverpage{
-    position:absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    opacity: 0;
-    transition: opacity 1s ease;
+  .front,.back {
+    width: 300px;
+    height: 400px;
 
-    &.show {
-      opacity: 1;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 10px;
+      bottom: 0;
+      width: 3px;
+      background: rgba(0,0,0,0.06);
+      box-shadow: 1px 0 3px rgba(255, 255, 255, 0.1);
     }
   }
 
-  .page1 {
-    background-image: url(/images/background/academic0.jpg);
+  .front {
+    transform: translate3d(0,0,20px);
+    z-index: 10;
   }
-  .page2 {
-    background-image: url(/images/background/academic1.jpg);
+
+  .back {
+    transform: rotate3d(0,1,0,-180deg) translate3d(0,0,20px);
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.3);
+    border-radius: 3px 0 0 3px;
+
+    p {
+      color: #fff;
+      font-size: 13px;
+      padding: 40px;
+      text-align: center;
+      font-weight: 700;
+    }
   }
-  .page3 {
-    background-image: url(/images/background/academic2.jpg);
+
+  .left, .right {
+    width: 40px;
+    left: -20px;
   }
-  .page4 {
-    background-image: url(/images/background/academic3.jpg);
-    transition: opacity 1s ease, -webkit-filter 2s ease, filter 2s ease;
+
+  .left {
+    height: 400px;
+    transform: rotate3d(0,1,0,-90deg);
+
+    h2 {
+      width: 400px;
+      height: 40px;
+      color: #fff;
+      font-size: 15px;
+      line-height: 40px;
+      padding-right: 10px;
+      text-align: right;
+    }
   }
-  .blur {
-    -webkit-filter: blur(10px);
+
+  .bottom, .top {
+    width: 295px;
+    height: 40px;
+    top: -15px;
+    background-color: #fff;
+    backface-visibility: hidden;
+  }
+  .bottom {
+    transform: rotate3d(1,0,0,-90deg) translate3d(0,0,390px);
+  }
+  .top {
+    transform: rotate3d(1,0,0,90deg);
   }
 }
-// .rolling-text {
-//   padding: 40vh 0 0 55vw;
-// }

@@ -11,6 +11,7 @@
   <template>
     <link href="/elements/my-app.css" rel="stylesheet">
     <style shim-shadowdom>
+      /* Workaround as /deep/ is not supported in sass */
       :host /deep/ h1, h2, h3, h4 {
         font-weight: 300;
         font-size: 4rem;
@@ -19,9 +20,21 @@
       :host /deep/ section[page] {
         min-height: 100vh;
       }
+      :host /deep/ .z-depth-1 {
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+      }
+      :host /deep/ .z-depth-2 {
+        box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      :host /deep/ .z-depth-3 {
+        box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+      }
+      :host /deep/ .z-depth-4 {
+        box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
+      }
     </style>
 
-    <core-scroll-header-panel id="headerPanel" condenses="true" keepCondensedHeader="true" on-core-header-transform="{{onHeaderTransform}}" on-scroll="{{onScroll}}">
+    <core-scroll-header-panel id="headerPanel" condenses="true" keepCondensedHeader="true" on-core-header-transform="{{onHeaderTransform}}">
       <core-toolbar id="mainheader" class="tall layout">
         <div class="top">
           <a href="//medium.com/@grunty" target="_blank"><my-font-awesome attr="fa-medium"></my-font-awesome></a>
@@ -38,7 +51,7 @@
         <my-self></my-self>
       </section>
 
-      <section class="open-source section dark">
+      <section class="open-source section">
         <h2>Open source projects</h2>
         <!-- reference - chips to cards  -->
         <!-- source: https://github.com/Polymer/core-animated-pages/blob/master/demos/music.html -->
@@ -51,7 +64,7 @@
         <my-timeline></my-timeline>
       </section>
 
-      <section id="academic" page class="academic section dark">
+      <section id="academic" page class="academic section">
         <h2 id="academicHeader" class="section-header">Academic achievements</h2>
         <my-academics onScroll="{{onScroll}}"></my-academics>
       </section>

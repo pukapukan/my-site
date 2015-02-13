@@ -11,7 +11,7 @@
       <section id="chipSection">
         <div class="chip-container" hero-p on-tap="{{transition}}">
           <template repeat="{{items as item}}">
-            <div class="chip {{item.theme}}" hero-id="{{item.project}}" hero?="{{selectedChip === item}}">
+            <div class="chip z-depth-1 {{item.theme}}" hero-id="{{item.project}}" hero?="{{selectedChip === item}}">
               <!-- <div class="chip-cover">Click for more</div> -->
               <div class="chip-top {{item.css}}"  hero-id="{{item.project}}-art" hero?="{{selectedChip === item}}"></div>
               <div class="chip-bottom">
