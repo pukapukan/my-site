@@ -1,11 +1,148 @@
 :host {
   position: relative;
   display: block;
+  text-align: center;
+}
+
+.chip {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  width: 450px;
+  padding: 20px;
+  background: white;
+  border-radius: 3px;
+  margin: 20px;
+
+  &.wide {
+    width: 750px;
+  }
+
+  &#certificates {
+    overflow: hidden;
+  }
+
+  &:hover {
+    .book {
+      transform: rotate3d(0.1, -0.2, 0.1, 35deg) scale(1.2);
+    }
+    .cover {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+}
+
+.cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 300;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.88);
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: all 0.5s ease;
+  transition-property: opacity, transform;
+
+  & > * {
+    line-height: 3rem;
+    &:first-child {
+      margin-top: 30%;
+    }
+  }
+
+  a, span {
+    display: inline-block;
+    line-height: 1.5rem;
+    margin: 0 0.5rem;
+    font-weight: bold;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+    margin: 0.5rem;
+
+    &:after {
+      content: '';
+      display: block;
+      width: 100%;
+      border: 1px solid white;
+      -webkit-transform: translate(0px, 6px);
+      transform: translate(0px, 6px);
+      opacity: 0;
+      color: #999;
+      transition: -webkit-transform 0.2s ease-out, opacity 0.2s ease-out;
+      transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+    }
+    &:hover:after {
+      transform: translate(0px, 0px);
+      opacity: 1;
+    }
+  }
+}
+
+.description {
+  padding: 20px;
+  width: 350px;
+  display: inline-block;
+
+  .logo {
+    max-width: 220px;
+    max-height: 120px;
+  }
+  .title {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+  }
+  .period {
+    #certificates & {
+      margin-top: 1rem;
+      font-weight: bolder;
+      line-height: 2rem;
+    }
+  }
+  .divider {
+    line-height: 4rem;
+
+    my-font-awesome {
+      position: relative;
+
+      &:before, &:after {
+        content: ' ';
+        position: absolute;
+        width: 75px;
+        top: 0.5rem;
+        height: 2px;
+        background: black;
+      }
+      &:before {
+        left: -100px;
+      }
+      &:after {
+        left: 40px;
+      }
+    }
+  }
+  .achievements > * {
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+  }
 }
 
 .books {
   list-style: none;
-  position: relative;
+  display: inline-block;
+  width: 300px;
+  height: 400px;
+  vertical-align: top;
+  padding: 0 25px;
 
   li {
     position: relative;
@@ -13,17 +150,7 @@
     float: left;
     z-index: 1;
     margin: 0px 50px 40px 0;
-    -webkit-perspective: 1800px;
-    -moz-perspective: 1800px;
-    perspective: 1800px;
-
-    position: relative;
-    width: 300px;
-    float: left;
-    z-index: 1;
-    margin: 0px 50px 40px 0;
-    -webkit-perspective: 1800px;
-    -moz-perspective: 1800px;
+    perspective: 5000px;
     @extend %clearfix;
   }
 }
@@ -34,17 +161,13 @@
   height: 400px;
   transform-style: preserve-3d;
   perspective: 1800px;
-  transition: transform .5s;
-
-  &:hover {
-    transform: rotate3d(0,1,0,35deg);
-  }
+  transition: transform .75s;
 
   & > div {
     display: block;
     position: absolute;
     background-color: #597798;
-    transition: transform .5s;
+    backface-visibility: hidden;
   }
 
   h2 {
@@ -63,6 +186,7 @@
   .front,.back {
     width: 300px;
     height: 400px;
+    backface-visibility: visible;
 
     &:after {
       content: '';
@@ -171,5 +295,5 @@
 }
 
 .description {
-  
+
 }

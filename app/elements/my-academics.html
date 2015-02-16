@@ -4,8 +4,42 @@
 <polymer-element name="my-academics" noscript>
   <template>
     <link href="/elements/my-academics.css" rel="stylesheet">
-    <!-- Books inspired by http://tympanus.net/Development/3DBookShowcase/index.html -->
-    <section>
+
+    <section id="certificates" class="chip z-depth-1">
+      <div class="cover">
+        <div>Check official transcript from: <a href="https://mcp.microsoft.com/Anonymous//Transcript/Validate" target="_blank">Microsoft portal</a></div>
+        <div>Transcript Id: <span>949832</span></div>
+        <div>Access Code: <span>hyunjoonpark</span></div>
+      </div>
+      <div class="description">
+        <img class="logo" src="/images/academic/mcsd.png" alt="Microsoft Certified Solution Developer" />
+        <div class="title">Microsoft Certified Professional</div>
+
+        <div class="period">2013</div>
+        <div class="achievements">
+          <div>Microsoft Certified Solution Developer - Web Applications</div>
+        </div>
+
+        <div class="period">2011</div>
+        <div class="achievements">
+          <div>Microsoft Certified Professional Developer - ASP.NET 3.5</div>
+          <div>Microsoft Certified Technical Specialist - ASP.NET 3.5</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="master" class="chip wide z-depth-1">
+      <div class="description">
+        <img class="logo" src="/images/academic/uoa.gif" alt="University of Auckland"/>
+        <div class="title">Master of Engineering (Hons.)</div>
+        <div>Software Engineering</div>
+        <div>2008 - 2009</div>
+        <div class="divider"><my-font-awesome attr="fa-star"></my-font-awesome></div>
+        <div class="achievements">
+          <div>Thesis supervisor: Professor Valeriy Vyatkin</div>
+        </div>
+      </div>
+      <!-- Book rendering from http://tympanus.net/Development/3DBookShowcase/index.html -->
       <ul class="books">
         <li>
           <div class="book">
@@ -15,8 +49,8 @@
                 <h3>Refactoring Elements of Control Applications</h3>
               </div>
               <div class="author">
-                <h4>University of Auckland</h4>
-                <h4>Jason Park</h4>
+                <div>University of Auckland</div>
+                <div>Jason Park</div>
               </div>
             </div>
             <div class="back">
@@ -29,15 +63,40 @@
             <div class="top"></div>
             <div class="bottom"></div>
           </div>
-
-          <div class="description">
-            <img class="school" src="/images/academic/uoa.gif" alt="University of Auckland logo"/>
-            <div class="period">2008 ~ 2009</div>
-            <div class="title">Master of Engineering</div>
-            <div class="major">Software Engineering</div>
-          </div>
-        <li>
+        </li>
       </ul>
+    </section>
+
+    <section id="bachelor" class="chip z-depth-1">
+      <div class="description">
+        <img class="logo" src="/images/academic/uoa.gif" alt="University of Auckland"/>
+        <div class="title">Bachelor of Engineering</div>
+        <div>Software Engineering</div>
+        <div>2004 - 2007</div>
+        <div class="divider"><my-font-awesome attr="fa-star"></my-font-awesome></div>
+        <div class="achievements">
+          <div>
+            <my-font-awesome attr="fa-trophy"></my-font-awesome> 3rd place in Innovative Design Competition (2007)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="highschool" class="chip z-depth-1">
+      <div class="description">
+        <img class="logo" src="/images/academic/westlake.png" alt="Westlake Boys High School" />
+        <div class="title">Westlake Boys High School</div>
+        <div>1999 - 2003</div>
+        <div class="divider"><my-font-awesome attr="fa-star"></my-font-awesome></div>
+        <div class="achievements">
+          <div>
+            <my-font-awesome attr="fa-trophy"></my-font-awesome> High Distinction (98% percentile) in Australian Mathematics Competition (2003)
+          </div>
+          <div>
+            <my-font-awesome attr="fa-trophy"></my-font-awesome> Japanese Language Proficiency Certification (日本語能力試験) Level 3 (2003)
+          </div>
+        </div>
+      </div>
     </section>
   </template>
 </polymer-element>
