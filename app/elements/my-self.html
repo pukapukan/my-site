@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<polymer-element name="my-self" noscript>
+<polymer-element name="my-self">
   <template>
     <link href="/elements/my-self.css" rel="stylesheet">
 
@@ -11,7 +11,23 @@
       </div>
       <div class="myself" auto-vertical>
         Hi, my name is <b>Jason</b> (a.k.a. Hyunjoon) and I'm a <b>Korea-born Kiwi</b> + <b>.NET/JS geek</b>.  As a software engineer, I value <B>software craftmanship</b> and believe in harmony and synergy that comes from a great team, an awesome culture and a seasoned leader.
+
+        <div class="btn z-depth-2" on-tap="{{scrollToContact}}">Available for Hire</div>
       </div>
     </div>
   </template>
+  <script>
+  Polymer({
+    scrollToContact: function (e) {
+      var app = document.querySelector('my-app')
+      var scroller = app.$.headerPanel.scroller;
+      var contact = app.shadowRoot.querySelector('.contact');
+
+      var start = scroller.scrollTop;
+      var end = contact.offsetTop; // px
+
+      scroller.scrollTop = contact.offsetTop;
+    }
+  });
+  </script>
 </polymer-element>

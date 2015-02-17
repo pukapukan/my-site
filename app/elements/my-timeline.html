@@ -78,7 +78,6 @@
   </template>
   <script>
   Polymer({
-    // data
     items: [
       {
         company: {
@@ -121,7 +120,7 @@
           stacks: ['.net', 'ibm WebSphere', 'db2', 'mssql']
         }],
         achievements: [
-          'Singapore\'s most valueable employee award (July 2013)',
+          'Singapore\'s most valuable employee award (July 2013)',
           'Outstanding performance award (March 2013)'
         ],
         presentations: [{
@@ -147,7 +146,7 @@
     ],
     // expression
     isOdd: function(num) {
-      return num % 2 === 1;
+      return !!(num % 2);
     }
   });
   </script>

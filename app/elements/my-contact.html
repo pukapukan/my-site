@@ -1,0 +1,27 @@
+<polymer-element name="my-contact">
+  <template>
+    <link href="/elements/my-contact.css" rel="stylesheet">
+
+    <p>I am moving back to Seoul, South Korea in March 2015 and am looking for an exiciting company to work for/project to contribute to.</p>
+    <p>Feel free to drop me a mail or contact me over any of SNS accounts provided on this page to discuss about any professional opportunity.</p>
+
+    <div class="blobs">
+      <div class="blob">4</div>
+      <div class="blob">3</div>
+      <div class="blob">2</div>
+      <div class="blob">1</div>
+    </div>
+
+    <!-- Gooey effect filter Lucas Bebber on http://css-tricks.com/gooey-effect/ -->
+    <filter id="fancy-goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+      <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+    </filter>
+  </template>
+  <script>
+  Polymer({
+
+  });
+  </script>
+</polymer>

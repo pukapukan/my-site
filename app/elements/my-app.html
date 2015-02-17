@@ -1,11 +1,13 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/core-scroll-header-panel/core-scroll-header-panel.html">
 <link rel="import" href="../bower_components/core-toolbar/core-toolbar.html">
+<link rel="import" href="../bower_components/core-animation/core-animation.html">
 <link rel="import" href="my-font-awesome.html">
 <link rel="import" href="my-self.html">
 <link rel="import" href="my-projects.html">
 <link rel="import" href="my-timeline.html">
 <link rel="import" href="my-academics.html">
+<link rel="import" href="my-contact.html">
 
 <polymer-element name="my-app">
   <template>
@@ -33,7 +35,7 @@
         box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
       }
     </style>
-
+    <core-animation id="animation" duration="500"></core-animation>
     <core-scroll-header-panel id="headerPanel" condenses="true" keepCondensedHeader="true" on-core-header-transform="{{onHeaderTransform}}">
       <core-toolbar id="mainheader" class="tall layout">
         <div class="top">
@@ -43,7 +45,6 @@
         </div>
 
         <div class="indent"></div>
-        <!-- <div class="middle indent">few things about</div> -->
         <h1 id="title" class="bottom title indent">hyunj<span>o_O</span>n</h1>
       </core-toolbar>
 
@@ -59,7 +60,7 @@
         <my-projects></my-projects>
       </section>
 
-      <section page class="career section">
+      <section class="career section">
         <h2>Career journey</h2>
         <my-timeline></my-timeline>
       </section>
@@ -69,30 +70,26 @@
         <my-academics></my-academics>
       </section>
 
-      <section class="section footer">
-        <h2>Footer</h2>
-        blah blah
+      <section page class="section contact">
+        <h2>Contact</h2>
+        <my-contact></my-contact>
       </section>
     </core-scroll-header-panel>
   </template>
   <script>
   (function () {
     var titleStyle;
-    var scale;
     Polymer({
       ready:function() {
         titleStyle = this.$.title.style;
       },
       onHeaderTransform: function (event, detail, sender) {
         var m = detail.height - detail.condensedHeight;
-        var newScale = Math.max(0.5, (m - detail.y) / (m / 0.5)  + 0.5);
-        if(scale != newScale) {
-          scale = newScale;
-          titleStyle.transform =
-            titleStyle.webkitTransform =
-            titleStyle.mozTransform =
-            titleStyle.msTransform = 'scale(' + scale + ')';
-        }
+        var scale = Math.max(0.5, (m - detail.y) / (m / 0.5)  + 0.5);
+        titleStyle.transform =
+          titleStyle.webkitTransform =
+          titleStyle.mozTransform =
+          titleStyle.msTransform = 'scale(' + scale + ')';
       }
     });
   })();

@@ -18,17 +18,12 @@
     width: 750px;
   }
 
-  &#certificates {
-    overflow: hidden;
-  }
-
   &:hover {
     .book {
       transform: rotate3d(0.1, -0.2, 0.1, 35deg) scale(1.2);
     }
     .cover {
       opacity: 1;
-      transform: translateY(0%);
     }
   }
 }
@@ -45,9 +40,7 @@
   border-radius: 3px;
   background: rgba(0, 0, 0, 0.88);
   opacity: 0;
-  transform: translateY(-100%);
-  transition: all 0.5s ease;
-  transition-property: opacity, transform;
+  transition: opacity 0.5s ease;
 
   & > * {
     line-height: 3rem;
