@@ -1,4 +1,5 @@
 @import "../styles/utilities";
+@import "../styles/variables";
 @import "fonts";
 @import "loader";
 
@@ -21,4 +22,10 @@ html, body {
 }
 .content {
   padding: 100px;
+}
+
+@media only screen and (max-width: $phone-screen) {
+  html {
+    font-size: 14px;
+  }
 }

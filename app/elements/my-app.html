@@ -8,6 +8,7 @@
 <link rel="import" href="my-timeline.html">
 <link rel="import" href="my-academics.html">
 <link rel="import" href="my-contact.html">
+<link rel="import" href="my-share.html">
 
 <polymer-element name="my-app">
   <template>
@@ -23,16 +24,15 @@
         min-height: 100vh;
       }
       :host /deep/ .z-depth-1 {
+        transition: box-shadow 0.5s ease;
+        will-change: box-shadow;
         box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+      }
+      :host /deep/ .z-depth-1:hover {
+        box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       }
       :host /deep/ .z-depth-2 {
         box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      }
-      :host /deep/ .z-depth-3 {
-        box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-      }
-      :host /deep/ .z-depth-4 {
-        box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
       }
     </style>
     <core-animation id="animation" duration="500"></core-animation>
@@ -41,7 +41,6 @@
         <div class="top">
           <a href="//medium.com/@grunty" target="_blank"><my-font-awesome attr="fa-medium"></my-font-awesome></a>
           <a href="//github.com/pukapukan" target="_blank"><my-font-awesome attr="fa-github"></my-font-awesome></a>
-          <a href="//www.linkedin.com/in/jasonhyunjoonpark" target="_blank"><my-font-awesome attr="fa-linkedin"></my-font-awesome></a>
         </div>
 
         <div class="indent"></div>
