@@ -1,24 +1,21 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/facebook-share/facebook-share.html">
 <link rel="import" href="../bower_components/twitter-button/dist/twitter-button.html">
-<link rel="import" href="my-font-awesome.html">
 
-<polymer-element name="my-contact" noscript>
+<dom-module name="my-contact" noscript>
+  <link href="/elements/my-contact.css" rel="import" type="css">
   <template>
-    <link href="/elements/my-contact.css" rel="stylesheet">
-
     <p>I am moving back to Seoul, South Korea in March 2015 and am looking for an exiciting company to work for/project to contribute to.</p>
     <p>Feel free to drop me a message or contact me over any of SNS accounts provided below to discuss about any career/freelance opportunity.</p>
 
     <div class="accounts">
       <a href="mailto:jason.hyunjoon.park@gmail.com?body=Hi,%0D%0A%0D%0AI stumbled upon your profile on hyunjoonpark.com.  I would like to more about you.%0D%0A%0D%0ACheers" class="btn email">
-        <my-font-awesome attr="fa-envelope-o fa-2x"></my-font-awesome> jason.hyunjoon.park@gmail.com
+        <i class="fa fa-envelope-o fa-2x"></i> jason.hyunjoon.park@gmail.com
       </a>
       <a href="//twitter.com/hyunjo_on" target="_blank" class="btn twitter">
-        <my-font-awesome attr="fa-twitter fa-2x"></my-font-awesome> hyunjo_On
+        <i class="fa fa-twitter fa-2x"></i> hyunjo_On
       </a>
       <a href="//linkedin.com/in/jasonhyunjoonpark" target="_blank" class="btn linkedin">
-        <my-font-awesome attr="fa-linkedin-square fa-2x"></my-font-awesome> Jason Hyunjoon Park
+        <i class="fa fa-linkedin-square fa-2x"></i> Jason Hyunjoon Park
       </a>
     </div>
 
@@ -27,7 +24,15 @@
         <twitter-button type="share" text="A simple developer portfolio built using HTML5 and WebComponents" user="hyunjo_on" href="http://hyunjoonpark.com" width="85"></twitter-button>
       </div>
       <div class="share-fb">
-        <facebook-share type="html5" appid="782234185187617" pageurl="http://hyunjoonpark.com" layout="button_count"></facebook-share>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5&appId=782234185187617";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        <div class="fb-share-button" data-href="http://hyunjoonpark.com/" data-layout="button_count"></div>
       </div>
       <div>
         This site is owned and maintained by Jason Park.
@@ -35,4 +40,8 @@
       </div>
     </section>
   </template>
-</polymer>
+
+  <script>
+    Polymer({ is: 'my-contact' });
+  </script>
+</dom-module>

@@ -16,10 +16,11 @@
     }
   }
 }
-core-scroll-header-panel {
+paper-scroll-header-panel {
   height: 100%;
 }
-core-toolbar#mainheader{
+paper-toolbar#mainheader{
+  font-size: 1.3rem;
   color: white;
   fill: white;
   background-color: transparent;
@@ -30,18 +31,19 @@ core-toolbar#mainheader{
   }
   .top {
     margin-left: auto;
+    margin-right: 56px;
   }
 }
-core-scroll-header-panel::shadow #headerBg {
+paper-scroll-header-panel::shadow #headerBg {
   background-image: url(/images/background/nz_national_park.jpg);
 }
-core-scroll-header-panel::shadow #condensedHeaderBg {
+paper-scroll-header-panel::shadow #condensedHeaderBg {
   background-color: rgba(0, 0, 0, 0.7);
 }
-core-scroll-header-panel::shadow #headerContainer {
+paper-scroll-header-panel::shadow #headerContainer {
   z-index: $header-z-index;
 }
-core-scroll-header-panel::shadow #mainContainer {
+paper-scroll-header-panel::shadow #mainContainer {
   // padding: 0px 68px;
   padding-top: 0px !important;
 
@@ -51,10 +53,11 @@ core-scroll-header-panel::shadow #mainContainer {
   }
 }
 .title {
-  font-size: 3rem;
+  font-size: 3rem !important;
   vertical-align: middle;
   will-change: transform;
   transform-origin: left;
+  overflow: visible !important;
 }
 .title > span {
   font-weight: bolder;
@@ -64,7 +67,7 @@ core-scroll-header-panel::shadow #mainContainer {
   color: rgb(244, 219, 51);
   transition: all 0.3s ease-out;
 }
-core-toolbar a {
+paper-toolbar a {
   color: white;
 
   &:after {
@@ -100,7 +103,7 @@ core-toolbar a {
 }
 
 @media only screen and (max-width: $tablet-screen) {
-  core-toolbar .indent {
+  paper-toolbar .indent {
     margin-left: 4px !important;
   }
   section {
@@ -110,7 +113,7 @@ core-toolbar a {
 }
 
 @media only screen and (max-width: $phone-screen) {
-  core-toolbar .indent {
+  paper-toolbar .indent {
     margin-left: 4px !important;
   }
   section {

@@ -104,25 +104,6 @@
   }
   .divider {
     line-height: 4rem;
-
-    my-font-awesome {
-      position: relative;
-
-      &:before, &:after {
-        content: ' ';
-        position: absolute;
-        width: 75px;
-        top: 0.5rem;
-        height: 2px;
-        background: black;
-      }
-      &:before {
-        left: -100px;
-      }
-      &:after {
-        left: 40px;
-      }
-    }
   }
   .achievements > * {
     &:not(:last-child) {

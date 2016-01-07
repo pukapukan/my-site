@@ -34,7 +34,7 @@
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
-<body fullbleed layout vertical>
+<body class="fullbleed">
   <div id="loader" class="tetrominos">
     <div class="loader-text">Loading contents</div>
     <div class="tetromino box1"></div>
@@ -42,11 +42,11 @@
     <div class="tetromino box3"></div>
     <div class="tetromino box4"></div>
   </div>
-  <my-app unresolved>
+  <my-app unresolved class="layout vertical">
   </my-app>
 
-  <!-- build:js bower_components/webcomponentsjs/webcomponents.min.js -->
-  <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+  <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
   <!-- endbuild -->
 
   <!-- build:vulcanized elements/elements.vulcanized.html -->

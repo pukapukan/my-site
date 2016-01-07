@@ -1,10 +1,9 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="my-font-awesome.html">
 
-<polymer-element name="my-academics" noscript>
+<dom-module name="my-academics">
+  <link href="/elements/my-academics.css" rel="import" type="css">
+
   <template>
-    <link href="/elements/my-academics.css" rel="stylesheet">
-
     <section id="certificates" class="chip z-depth-1">
       <div class="cover">
         <div>Check official transcript from: <a href="https://mcp.microsoft.com/Anonymous//Transcript/Validate" target="_blank">Microsoft portal</a></div>
@@ -34,7 +33,9 @@
         <div class="title">Master of Engineering (Hons.)</div>
         <div>Software Engineering</div>
         <div>2008 - 2009</div>
-        <div class="divider"><my-font-awesome attr="fa-star"></my-font-awesome></div>
+        <div class="divider">
+          <i class="fa fa-star"></i>
+        </div>
         <div class="achievements">
           <div>Supervisor: Professor Valeriy Vyatkin</div>
         </div>
@@ -73,10 +74,12 @@
         <div class="title">Bachelor of Engineering</div>
         <div>Software Engineering</div>
         <div>2004 - 2007</div>
-        <div class="divider"><my-font-awesome attr="fa-star"></my-font-awesome></div>
+        <div class="divider">
+          <i class="fa fa-star"></i>
+        </div>
         <div class="achievements">
           <div>
-            <my-font-awesome attr="fa-trophy"></my-font-awesome> 3rd place in Innovative Design Competition (2007)
+            <i class="fa fa-trophy"></i> 3rd place in Innovative Design Competition (2007)
           </div>
         </div>
       </div>
@@ -87,16 +90,24 @@
         <img class="logo" src="/images/academic/westlake.png" alt="Westlake Boys High School" />
         <div class="title">Westlake Boys High School</div>
         <div>1999 - 2003</div>
-        <div class="divider"><my-font-awesome attr="fa-star"></my-font-awesome></div>
+        <div class="divider">
+          <i class="fa fa-star"></i>
+        </div>
         <div class="achievements">
           <div>
-            <my-font-awesome attr="fa-trophy"></my-font-awesome> High Distinction (98% percentile) in Australian Mathematics Competition (2003)
+            <i class="fa fa-trophy"></i> High Distinction (98% percentile) in Australian Mathematics Competition (2003)
           </div>
           <div>
-            <my-font-awesome attr="fa-trophy"></my-font-awesome> Japanese Language Proficiency Certification (日本語能力試験) Level 3 (2003)
+            <i class="fa fa-trophy"></i> Japanese Language Proficiency Certification (日本語能力試験) Level 3 (2003)
           </div>
         </div>
       </div>
     </section>
   </template>
-</polymer-element>
+
+  <script>
+    Polymer({
+      is: 'my-academics'
+    });
+  </script>
+</dom-module>

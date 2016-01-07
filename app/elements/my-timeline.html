@@ -1,12 +1,11 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="my-font-awesome.html">
 
-<polymer-element name="my-timeline">
+<dom-module name="my-timeline">
+  <link href="/elements/my-timeline.css" rel="import" type="css">
   <template>
-    <link href="/elements/my-timeline.css" rel="stylesheet">
     <div id="timeline">
-      <template repeat="{{item, index in items}}">
-        <div class="timeline-item" right?="{{index | isOdd}}">
+      <template is="dom-repeat" items="{{items}}">
+        <div class="timeline-item" right$="{{isOdd(index)}}">
           <div class="timeline-linker">
           </div>
 
@@ -16,36 +15,44 @@
             <div>{{item.to}}</div>
           </div>
           <div class="timeline-content z-depth-1">
-            <a class="company-logo" href="{{item.company.url}}" target="_blank"><img src="/images/work/{{item.company.name}}.png" alt="{{item.company.name}}" /></a>
+            <template is="dom-if" if={{item.company.url}}>
+              <a class="company-logo" href="{{item.company.url}}" target="_blank"><img src="/images/work/{{item.company.name}}.png" alt="{{item.company.name}}" /></a>
+            </template>
+            <template is="dom-if" if={{!item.company.url}}>
+              <span class="company-name">{{item.company.name}}</span>
+            </template>
 
             <div class="role">
               {{item.role}}
             </div>
 
-            <template if="{{item.duties}}">
+            <template is="dom-if" if="{{item.duties}}">
               <p class="description">
                 {{item.duties}}
               </p>
               <div class="stacks">
-                <div class="subheader"><my-font-awesome attr="fa-navicon"></my-font-awesome> Tech stacks</div>
+                <div class="subheader">
+                  <i class="fa fa-navicon"></i> Tech stacks</div>
                 <ul>
-                  <template repeat="{{stack in item.stacks}}">
+                  <template is="dom-repeat" items="{{item.stacks}}" as="stack">
                     <li>{{stack}}</li>
                   </template>
                 </ul>
               </div>
             </template>
 
-            <template if="{{item.projects}}">
-              <div class="subheader"><my-font-awesome attr="fa-suitcase"></my-font-awesome> Projects</div>
-              <template repeat="{{project in item.projects}}">
+            <template is="dom-if" if="{{item.projects}}">
+              <div class="subheader">
+                <i class="fa fa-suitcase"></i> Projects
+              </div>
+              <template is="dom-repeat" items="{{item.projects}}" as="project">
                 <div class="project">
                   <div class="client">{{project.client}}</div>
                   <div class="project-role">{{project.role}}</div>
                   <p class="description">{{project.duties}}</p>
                   <div class="stacks">
                     <ul>
-                      <template repeat="{{stack in project.stacks}}">
+                      <template is="dom-repeat" items="{{project.stacks}}" as="stack">
                         <li>{{stack}}</li>
                       </template>
                     </ul>
@@ -54,20 +61,28 @@
               </template>
             </template>
 
-            <template if="{{item.achievements}}">
+            <template is="dom-if" if="{{item.achievements}}">
               <div class="achievements">
-                <div class="subheader"><my-font-awesome attr="fa-trophy"></my-font-awesome> Achievements</div>
+                <div class="subheader">
+                  <i class="fa fa-trophy"></i> Achievements
+                </div>
                 <ul>
-                  <template repeat="{{achievement in item.achievements}}"><li>{{achievement}}</li></template>
+                  <template is="dom-repeat" items="{{item.achievements}}" as="achievement">
+                    <li>{{achievement}}</li>
+                  </template>
                 </ul>
               </div>
             </template>
 
-            <template if="{{item.presentations}}">
+            <template is="dom-if" if="{{item.presentations}}">
               <div class="presentations">
-                <div class="subheader"><my-font-awesome attr="fa-slideshare"></my-font-awesome> Presentations</div>
+                <div class="subheader">
+                  <i class="fa fa-slideshare"></i> Presentations
+                </div>
                 <ul>
-                  <template repeat="{{item.presentations}}"><li><a href="{{url}}" target="_blank">{{text}}</a></li></template>
+                  <template is="dom-repeat" items="{{item.presentations}}" as="info">
+                    <li><a href="{{info.url}}" target="_blank">{{info.text}}</a></li>
+                  </template>
                 </ul>
               </div>
             </template>
@@ -78,76 +93,89 @@
   </template>
   <script>
   Polymer({
-    items: [
-      {
-        company: {
-          name: 'asiarooms',
-          url: 'http://www.asiarooms.com'
+    is: 'my-timeline',
+    ready: function() {
+      this.items = [
+        {
+          company: {
+            name: 'Freelance'
+          },
+          from: '2015',
+          to: 'now',
+          role: 'Web developer',
+          duties: 'Built websites and a couple of CMS, mostly on Node.js/React stack.  Also built three cross platform games using Cocos2d-x.',
+          stacks: ['node', 'react', 'mongodb', 'cocos2d-x', 'git', 'keystonejs']
         },
-        from: '2014',
-        to: 'now',
-        role: 'Fullstack software engineer',
-        duties: 'Built a web application for customer management with multi-brand capability.',
-        sites: [{ name: 'laterooms.com', url: 'myaccount.laterooms.com'}, { name: 'asiarooms.com', url: 'myaccount.asiarooms.com' }],
-        stacks: ['node', 'express', 'kraken', 'sass', 'rabbit MQ', 'git'],
-        presentations: [{
-          text: 'Brownbag session on Web Components',
-          url: 'http://www.slideshare.net/hyunjoonpark1/brownbag-on-web-components'
-        }]
-      },
-      {
-        company: {
-          name: 'avanade',
-          url: 'http://www.avanade.com'
+        {
+          company: {
+            name: 'asiarooms',
+            url: 'http://www.asiarooms.com'
+          },
+          from: '2014',
+          to: '2015',
+          role: 'Fullstack software engineer',
+          duties: 'Built a web application for customer management with multi-brand capability.',
+          sites: [{ name: 'laterooms.com', url: 'myaccount.laterooms.com'}, { name: 'asiarooms.com', url: 'myaccount.asiarooms.com' }],
+          stacks: ['node', 'express', 'kraken', 'sass', 'rabbit MQ', 'git'],
+          presentations: [{
+            text: 'Brownbag session on Web Components',
+            url: 'http://www.slideshare.net/hyunjoonpark1/brownbag-on-web-components'
+          }]
         },
-        from: '2012',
-        to: '2014',
-        role: 'IT consultant',
-        projects: [{
-          client: 'Inland Revenue Authority of Singapore',
-          role: 'Team lead',
-          duties: 'Led a team of 10 devs to develop online tax filing system for corporates from ground up.',
-          stacks: ['asp.net', 'jQuery', 'html5', 'tfs']
-        }, {
-          client: 'Singapore Pools',
-          role: 'Lead developer',
-          duties: 'Revamped \'Sweep Management System\' and \'Sweep Validation System\' written in Oracle into a centralised enterprise web application.',
-          stacks: ['asp.net mvc', 'jQuery', 'kendo UI', 'tfs', 'mssql']
-        }, {
-          client: 'Inland Revenue Authority of Singapore',
-          role: 'Team lead',
-          duties: 'Integrated IRAS system with InfoComm Development of Singapore (IDA)\'s web-portal service, OneInBox.  This enabled tax payers to collect tax related letters online services.',
-          stacks: ['.net', 'ibm WebSphere', 'db2', 'mssql']
-        }],
-        achievements: [
-          'Singapore\'s most valuable employee award (July 2013)',
-          'Outstanding performance award (March 2013)'
-        ],
-        presentations: [{
-          text: 'Brownbag session on node.js',
-          url: 'http://www.slideshare.net/hyunjoonpark1/brown-bag-session-on-node'
-        }]
-      },
-      {
-        company: {
-          name: 'thomsons',
-          url: 'http://www.thomsons.com'
+        {
+          company: {
+            name: 'avanade',
+            url: 'http://www.avanade.com'
+          },
+          from: '2012',
+          to: '2014',
+          role: 'IT consultant',
+          projects: [{
+            client: 'Inland Revenue Authority of Singapore',
+            role: 'Team lead',
+            duties: 'Led a team of 10 devs to develop online tax filing system for corporates from ground up.',
+            stacks: ['asp.net', 'jQuery', 'html5', 'tfs']
+          }, {
+            client: 'Singapore Pools',
+            role: 'Lead developer',
+            duties: 'Revamped \'Sweep Management System\' and \'Sweep Validation System\' written in Oracle into a centralised enterprise web application.',
+            stacks: ['asp.net mvc', 'jQuery', 'kendo UI', 'tfs', 'mssql']
+          }, {
+            client: 'Inland Revenue Authority of Singapore',
+            role: 'Team lead',
+            duties: 'Integrated IRAS system with InfoComm Development of Singapore (IDA)\'s web-portal service, OneInBox.  This enabled tax payers to collect tax related letters online services.',
+            stacks: ['.net', 'ibm WebSphere', 'db2', 'mssql']
+          }],
+          achievements: [
+            'Singapore\'s most valuable employee award (July 2013)',
+            'Outstanding performance award (March 2013)'
+          ],
+          presentations: [{
+            text: 'Brownbag session on node.js',
+            url: 'http://www.slideshare.net/hyunjoonpark1/brown-bag-session-on-node'
+          }]
         },
-        from: '2010',
-        to: '2012',
-        role: 'Fullstack software engineer',
-        duties: 'Designed and delivered new features to a globally served business solution.  Key achievements are including but not limited to converting ASP.NET webform application to HTML5 web application using KnockOut JS and adopting Service Oriented Architecture to .NET applications',
-        stacks: ['.net', 'unity framework', 'knockout.js', 'mssql'],
-        achievements: [
-          'Maximising potential award (February 2011)',
-          'Outstanding performance award (September 2011)'
-        ]
-      }
-    ],
+        {
+          company: {
+            name: 'thomsons',
+            url: 'http://www.thomsons.com'
+          },
+          from: '2010',
+          to: '2012',
+          role: 'Fullstack software engineer',
+          duties: 'Designed and delivered new features to a globally served business solution.  Key achievements are including but not limited to converting ASP.NET webform application to HTML5 web application using KnockOut JS and adopting Service Oriented Architecture to .NET applications',
+          stacks: ['.net', 'unity framework', 'knockout.js', 'mssql'],
+          achievements: [
+            'Maximising potential award (February 2011)',
+            'Outstanding performance award (September 2011)'
+          ]
+        }
+      ];
+    },
     // expression
     isOdd: function(num) {
       return !!(num % 2);
     }
   });
   </script>
-</polymer-element>
+</dom-module>

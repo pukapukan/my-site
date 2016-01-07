@@ -16,7 +16,7 @@ img {
   max-width: 1100px;
   margin: 0 auto;
 }
-my-font-awesome {
+.fa {
   margin-right: 7px;
 }
 .project-name {
@@ -79,6 +79,11 @@ my-font-awesome {
     }
     .company-logo {
       color: transparent;
+    }
+    .company-name {
+      font-size: 3rem;
+      color: black;
+      text-shadow: 1px 1px 2px lightgray;
     }
     .role {
       color: lighten(black, 20%);

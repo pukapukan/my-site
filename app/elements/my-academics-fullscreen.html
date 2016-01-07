@@ -1,7 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="my-font-awesome.html">
 
-<polymer-element name="my-academics-fullscreen" attributes="onScroll">
+<dom-module id="my-academics-fullscreen" attributes="onScroll">
   <template>
     <link href="/elements/my-academics-fullscreen.css" rel="stylesheet">
     <div class="pages">
@@ -77,6 +76,7 @@
   };
 
   Polymer({
+    is: 'my-academics-fullscreen',
     domReady: function () {
       pages = this.shadowRoot.querySelectorAll('.page').array();
       pagesWrapper = this.shadowRoot.querySelector('.pages');
@@ -131,4 +131,4 @@
     }
   });
   </script>
-</polymer-element>
+</dom-module>

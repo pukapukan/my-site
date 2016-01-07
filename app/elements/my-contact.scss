@@ -24,26 +24,20 @@
     text-decoration: none;
   }
 
-  my-font-awesome {
+  .fa {
     margin-right: 5px;
     vertical-align: top;
   }
 }
 
-.email {
-  my-font-awesome {
+.fa {
+  .email & {
     color: rgb(153, 153, 153);
   }
-}
-
-.twitter {
-  my-font-awesome {
+  .twitter & {
     color: rgb(0, 132, 180);
   }
-}
-
-.linkedin {
-  my-font-awesome {
+  .linkedin & {
     color: rgb(0, 123, 182);
   }
 }

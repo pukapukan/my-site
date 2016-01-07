@@ -1,10 +1,8 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="my-font-awesome.html">
 
-<polymer-element name="my-self" noscript>
+<dom-module name="my-self">
+  <link rel="import" href="/elements/my-self.css" type="css">
   <template>
-    <link href="/elements/my-self.css" rel="stylesheet">
-
     <div id="about" class="about">
       <div class="space"></div>
       <div class="profile z-depth-2">
@@ -16,4 +14,8 @@
       </div>
     </div>
   </template>
-</polymer-element>
+
+  <script>
+    Polymer({ is: 'my-self' });
+  </script>
+</dom-module>

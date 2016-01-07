@@ -3,10 +3,9 @@
 <link rel="import" href="../bower_components/twitter-button/dist/twitter-button.html">
 <link rel="import" href="my-font-awesome.html">
 
-<polymer-element name="my-projects">
+<dom-module name="my-projects">
+  <link href="/elements/my-projects.css" rel="import" type="css">
   <template>
-    <link href="/elements/my-projects.css" rel="stylesheet">
-
     <core-animated-pages selected="{{page}}" transitions="hero-transition" on-core-animated-pages-transition-end="{{complete}}">
       <section id="chipSection">
         <div class="chip-container" hero-p on-tap="{{transition}}">
@@ -63,6 +62,7 @@
   </template>
   <script>
     Polymer({
+      is: 'my-projects',
       page: 0,
       items: [
         {
@@ -154,4 +154,4 @@
       }
     });
   </script>
-</polymer-element>
+</dom-module>

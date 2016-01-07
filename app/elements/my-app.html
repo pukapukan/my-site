@@ -1,18 +1,17 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/core-scroll-header-panel/core-scroll-header-panel.html">
-<link rel="import" href="../bower_components/core-toolbar/core-toolbar.html">
-<link rel="import" href="../bower_components/core-animation/core-animation.html">
-<link rel="import" href="my-font-awesome.html">
+<link rel="import" href="../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html">
+<link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="my-self.html">
-<link rel="import" href="my-projects.html">
+<!-- <link rel="import" href="my-projects.html"> -->
 <link rel="import" href="my-timeline.html">
 <link rel="import" href="my-academics.html">
 <link rel="import" href="my-contact.html">
 
-<polymer-element name="my-app">
+<dom-module name="my-app">
+  <link rel="import" type="css" href="/elements/my-app.css" />
   <template>
-    <link href="/elements/my-app.css" rel="stylesheet">
-    <style shim-shadowdom>
+    <style>
       /* Workaround as /deep/ is not supported in sass */
       :host /deep/ h1, h2, h3, h4 {
         font-weight: 300;
@@ -34,29 +33,26 @@
         box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       }
     </style>
-    <core-animation id="animation" duration="500"></core-animation>
-    <core-scroll-header-panel id="headerPanel" condenses="true" keepCondensedHeader="true" on-core-header-transform="{{onHeaderTransform}}">
-      <core-toolbar id="mainheader" class="tall layout">
+
+    <paper-scroll-header-panel id="headerPanel" class="flex" condenses="true" keep-condensed-header paper-header-transform="onHeaderTransform">
+      <paper-toolbar id="mainheader" class="tall layout">
         <div class="top">
-          <a href="//medium.com/@grunty" target="_blank"><my-font-awesome attr="fa-medium"></my-font-awesome></a>
-          <a href="//github.com/pukapukan" target="_blank"><my-font-awesome attr="fa-github"></my-font-awesome></a>
+          <a href="//medium.com/@grunty" target="_blank"><i class="fa fa-medium"/></i></a>
+          <a href="//github.com/pukapukan" target="_blank"><i class="fa fa-github"></i></a>
         </div>
 
         <div class="indent"></div>
         <h1 id="title" class="bottom title indent">hyunj<span>o_O</span>n</h1>
-      </core-toolbar>
+      </paper-toolbar>
 
       <section page class="about section">
         <my-self></my-self>
       </section>
 
-      <section class="open-source section">
+      <!-- <section class="open-source section">
         <h2>Open source projects</h2>
-        <!-- reference - chips to cards  -->
-        <!-- source: https://github.com/Polymer/core-animated-pages/blob/master/demos/music.html -->
-        <!-- demo: https://www.polymer-project.org/components/core-animated-pages/demos/music.html -->
         <my-projects></my-projects>
-      </section>
+      </section> -->
 
       <section class="career section">
         <h2>Career journey</h2>
@@ -72,18 +68,28 @@
         <h2>Contact</h2>
         <my-contact></my-contact>
       </section>
-    </core-scroll-header-panel>
+    </paper-scroll-header-panel>
   </template>
   <script>
   (function () {
-    var titleStyle;
+    var titleStyle, headerStyle;
     Polymer({
+      is: 'my-app',
       ready:function() {
+        document.querySelector('#loader').remove();
+
         titleStyle = this.$.title.style;
+        headerStyle = this.$.headerPanel.$.headerContainer.style;
+      },
+      listeners: {
+        'paper-header-transform': 'onHeaderTransform'
       },
       onHeaderTransform: function (event, detail, sender) {
         var m = detail.height - detail.condensedHeight;
         var scale = Math.max(0.5, (m - detail.y) / (m / 0.5)  + 0.5);
+
+        headerStyle.position = scale <= 0.5 ? 'fixed' : 'relative';
+
         titleStyle.transform =
           titleStyle.webkitTransform =
           titleStyle.mozTransform =
@@ -92,4 +98,4 @@
     });
   })();
   </script>
-</polymer-element>
+</dom-module>
